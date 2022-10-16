@@ -15,18 +15,18 @@ const GumCard: NextPage<Props> = (props) => {
   return (
     <Card
       css={{
-        height: '300px',
+        height: '200px',
         width: '100%',
       }}
     >
       <Card.Header css={{ position: 'absolute', top: 5 }}>
         <Row>
-          <Text size={36} weight='bold' color='white' transform='uppercase'>
+          <Text size={32} weight='bold' color='white' transform='uppercase'>
             {rating} ⭐
           </Text>
         </Row>
         <Col>
-          <Text size={22} weight='bold' color='primary' transform='uppercase'>
+          <Text size={16} weight='bold' color='primary' transform='uppercase'>
             {label}
           </Text>
           <Text h4 color='white'>

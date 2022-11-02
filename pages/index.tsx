@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Header from '../src/components/header'
+import HeroSection from '../src/components/herosection'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -13,7 +14,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <Header/>
+        <Header />
+        <HeroSection />
       </main>
     </div>
   )

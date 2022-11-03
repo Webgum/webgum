@@ -2,7 +2,9 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Header from '../src/components/header'
 import HeroSection from '../src/components/herosection'
+import categories from "../src/components/categories";
 import styles from '../styles/Home.module.css'
+import Categories from '../src/components/categories';
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +18,7 @@ const Home: NextPage = () => {
       <main>
         <Header />
         <HeroSection />
+        <Categories/>
       </main>
     </div>
   )

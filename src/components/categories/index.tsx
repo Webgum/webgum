@@ -39,7 +39,7 @@ const Categories = () => {
           <div>
             <h1 className={styles.title}>Categories</h1>
             <h2 className={styles.sub}>
-              Find your perfect product just got easier!
+              Finding your perfect product just got easier!
             </h2>
           </div>
           <div>

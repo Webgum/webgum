@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poor+Story&family=Poppins:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poor+Story&family=Poppins:wght@400;500;700&display=swap");
 
 html,
 body {
@@ -13,16 +13,11 @@ a {
   text-decoration: none;
 }
 
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}

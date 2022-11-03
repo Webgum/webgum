@@ -1,6 +1,6 @@
 import styles from "./header.module.scss";
 import SearchIcon from "../../assets/search-interface-symbol.png";
-import AccountIcon from "../../assets/user.png";
+import AccountIcon from "../../assets/User.png";
 import ShoppingCartIcon from "../../assets/shopping-cart.png";
 import Image from "next/image";
 

@@ -2,11 +2,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5rem;
-    
+    padding: 1rem 5rem;
+
+    @media screen and (max-width: 800px) {
+        padding: 1rem 3rem;
+    }
+
+    @media screen and (max-width: 400px) {
+        padding: 1rem;
+    }
+
     .logo {
         font-family: 'Poor Story', cursive;
         font-size: 50px;
+
+        @media screen and (max-width: 800px) {
+            font-size: 35px;
+        }
     }
 
     .sellBtn {
@@ -19,6 +31,10 @@
         border: 5px solid #80C3C1;
         border-radius: 100px;
         padding: .3rem 1rem;
+
+        @media screen and (max-width: 800px) {
+            font-size: 12px;
+        }
     }
 
     .menus {
@@ -26,8 +42,27 @@
         align-items: center;
         gap: 2rem;
 
+        @media screen and (max-width: 800px) {
+            gap: 1rem;
+        }
+
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
+
         &>* {
             cursor: pointer;
+        }
+    }
+
+    .menuWrapper {
+        position: relative;
+        height: 30px;
+        width: 30px;
+
+        @media screen and (max-width: 800px) {
+            height: 25px;
+            width: 25px;
         }
     }
 

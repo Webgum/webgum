@@ -10,9 +10,15 @@ const Header = () => {
       <div className={styles.logo}>webgum</div>
       <div className={styles.menus}>
         <button className={styles.sellBtn}>Start Selling</button>
-        <Image src={AccountIcon} width={30} height={30} />
-        <Image src={ShoppingCartIcon} width={30} height={30} />
-        <Image src={SearchIcon} width={30} height={30} />
+        <div className={styles.menuWrapper}>
+          <Image src={AccountIcon} objectFit="cover" layout="fill" />
+        </div>
+        <div className={styles.menuWrapper}>
+          <Image src={ShoppingCartIcon} objectFit="cover" layout="fill" />
+        </div>
+        <div className={styles.menuWrapper}>
+          <Image src={SearchIcon} objectFit="cover" layout="fill" />
+        </div>
       </div>
     </div>
   );

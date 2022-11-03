@@ -18,11 +18,11 @@ const HeroSection = () => {
         </p>
         <button className={styles.sellBtn}>Start Selling</button>
       </section>
-      <section>
+      <section className={styles.section2}>
         <Image
           src={HeroImage}
-          width={450}
-          height={400}
+          objectFit="cover"
+          layout="fill"
           className={styles.heroimg}
         />
       </section>

@@ -1,6 +1,6 @@
-import Image from "next/image";
-import HeroImage from "../../assets/herosection.png";
-import styles from "./herosection.module.scss";
+import Image from 'next/image';
+import HeroImage from '../../assets/herosection.png';
+import styles from './herosection.module.scss';
 
 const HeroSection = () => {
   return (
@@ -21,9 +21,10 @@ const HeroSection = () => {
       <section className={styles.section2}>
         <Image
           src={HeroImage}
-          objectFit="cover"
-          layout="fill"
+          objectFit='cover'
+          layout='fill'
           className={styles.heroimg}
+          alt='hero image'
         />
       </section>
     </div>

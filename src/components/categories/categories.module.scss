@@ -1,5 +1,5 @@
 .container {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   padding: 2rem 5rem;
   align-items: center;
@@ -39,6 +39,7 @@
   font-size: 4rem;
   font-weight: 500;
   line-height: 63.5px;
+  color: #945bdd;
 }
 .sub {
   font-size: 17.86px;
@@ -46,7 +47,7 @@
   line-height: 27.78px;
   margin-bottom: 0.5rem;
   margin-top: 2rem;
-  color: #494e55;
+  color: #d5b9fa;
 }
 .cards {
   display: grid;
@@ -62,7 +63,7 @@
   border-radius: 40px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   padding: 10px;
-  background-color: #fce77d;
+  background-color: #d5b9fa;
   height: 420px;
 }
 
@@ -72,13 +73,14 @@
   line-height: 1.2;
   margin-bottom: 0.5rem;
   margin-top: 0;
-  color: #494e55;
+  color: #212224;
 }
 
 .cardTitle {
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0em;
+  color: #212224;
 }
 
 .cardTags {

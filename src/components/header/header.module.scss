@@ -1,69 +1,68 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  color: #70e2ff;
+  @media screen and (max-width: 800px) {
+    padding: 1rem 3rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
 
     @media screen and (max-width: 800px) {
-        padding: 1rem 3rem;
+      font-size: 35px;
+    }
+  }
+
+  .sellBtn {
+    background: #945bdd;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    border: 5px solid #70e2ff;
+    border-radius: 100px;
+    padding: 0.3rem 1rem;
+
+    @media screen and (max-width: 800px) {
+      font-size: 12px;
+    }
+  }
+
+  .menus {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @media screen and (max-width: 800px) {
+      gap: 1rem;
     }
 
-    @media screen and (max-width: 400px) {
-        padding: 1rem;
+    @media screen and (max-width: 800px) {
+      display: none;
     }
 
-    .logo {
-        font-family: 'Poor Story', cursive;
-        font-size: 50px;
-
-        @media screen and (max-width: 800px) {
-            font-size: 35px;
-        }
+    & > * {
+      cursor: pointer;
     }
+  }
 
-    .sellBtn {
-        background: #EFCB88;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        font-size: 14px;
-        line-height: 20px;
-        text-transform: uppercase;
-        border: 5px solid #80C3C1;
-        border-radius: 100px;
-        padding: .3rem 1rem;
+  .menuWrapper {
+    position: relative;
+    height: 40px;
+    width: 30px;
 
-        @media screen and (max-width: 800px) {
-            font-size: 12px;
-        }
+    @media screen and (max-width: 800px) {
+      height: 25px;
+      width: 25px;
     }
-
-    .menus {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-
-        @media screen and (max-width: 800px) {
-            gap: 1rem;
-        }
-
-        @media screen and (max-width: 800px) {
-            display: none;
-        }
-
-        &>* {
-            cursor: pointer;
-        }
-    }
-
-    .menuWrapper {
-        position: relative;
-        height: 30px;
-        width: 30px;
-
-        @media screen and (max-width: 800px) {
-            height: 25px;
-            width: 25px;
-        }
-    }
-
+  }
 }

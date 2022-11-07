@@ -1,132 +1,137 @@
 .container {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    padding: 2rem 5rem;
-    align-items: center;
-    justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
 
-    @media screen and (max-width: 1000px) {
-        padding: 2rem 3rem;
-    }
+  display: flex;
+  padding: 2rem 5rem;
+  align-items: center;
+  justify-content: space-between;
 
-    @media screen and (max-width: 800px) {
-        flex-direction: column;
-        padding: 3rem;
-        gap: 50px;
-    }
+  @media screen and (max-width: 1000px) {
+    padding: 2rem 3rem;
+  }
 
-    @media screen and (max-width: 600px) {
-        padding: 1.5rem;
-    }
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    padding: 3rem;
+    gap: 50px;
+  }
 
-    @media screen and (max-width: 400px) {
-        padding: 1rem;
-    }
+  @media screen and (max-width: 600px) {
+    padding: 1.5rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 1rem;
+  }
 }
 
 .section1 {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    align-items: flex-start;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+  color: #d5b9fa;
 
-    @media screen and (max-width: 800px) {
-        width: 100%;
-        align-items: center;
-        gap: 40px;
-    }
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    align-items: center;
+    gap: 40px;
+  }
 }
 
 .section2 {
-    width: 45%;
-    height: 400px;
-    position: relative;
+  width: 45%;
+  height: 400px;
+  position: relative;
 
-    @media screen and (max-width: 800px) {
-        width: 80%;
-    }
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 
-    @media screen and (max-width: 600px) {
-        width: 95%;
-
-    }
+  @media screen and (max-width: 600px) {
+    width: 95%;
+  }
 }
 
 .title {
-    font-weight: 700;
-    font-size: 65px;
-    line-height: 110%;
-    color: #262626;
+  font-weight: 700;
+  font-size: 65px;
+  line-height: 110%;
+  color: #945bdd;
 
-    @media screen and (max-width: 1200px) {
-        font-size: 55px;
-    }
+  @media screen and (max-width: 1200px) {
+    font-size: 55px;
+  }
 
-    @media screen and (max-width: 1000px) {
-        font-size: 50px;
-    }
+  @media screen and (max-width: 1000px) {
+    font-size: 50px;
+  }
 
-    @media screen and (max-width: 800px) {
-        letter-spacing: 5px;
-        text-align: center;
-    }
+  @media screen and (max-width: 800px) {
+    letter-spacing: 5px;
+    text-align: center;
+  }
 
-    @media screen and (max-width: 600px) {
-        font-size: 40px;
-    }
+  @media screen and (max-width: 600px) {
+    font-size: 40px;
+  }
 
-    @media screen and (max-width: 500px) {
-        font-size: 35px;
-    }
+  @media screen and (max-width: 500px) {
+    font-size: 35px;
+  }
 }
 
-
 .title2 {
-    background: linear-gradient(90deg, #FF75C3 0%, #FFA647 20%, #FFE83F 40%, #9FFF5B 60%, #70E2FF 80%, #CD93FF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    #ff75c3 0%,
+    #ffa647 20%,
+    #ffe83f 40%,
+    #9fff5b 60%,
+    #70e2ff 80%,
+    #cd93ff 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .subtitle {
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 178.5%;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 178.5%;
 
-    @media screen and (max-width: 1200px) {
-        font-size: 20px;
-    }
+  @media screen and (max-width: 1200px) {
+    font-size: 20px;
+  }
 
-    @media screen and (max-width: 1000px) {
-        font-size: 18px;
-    }
+  @media screen and (max-width: 1000px) {
+    font-size: 18px;
+  }
 
-    @media screen and (max-width: 800px) {
-        text-align: center;
-    }
+  @media screen and (max-width: 800px) {
+    text-align: center;
+  }
 
-    @media screen and (max-width: 600px) {
-        font-size: 15px;
-    }
-
-
+  @media screen and (max-width: 600px) {
+    font-size: 15px;
+  }
 }
 
 .heroimg {
-    border-radius: 20px;
-
+  border-radius: 20px;
 }
 
 .sellBtn {
-    background: #EFCB88;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 20px;
-    text-transform: uppercase;
-    border: 5px solid #80C3C1;
-    border-radius: 100px;
-    padding: .6rem 1rem;
+  background: #945bdd;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  border: 5px solid #70e2ff;
+  border-radius: 100px;
+  padding: 0.6rem 1rem;
 }

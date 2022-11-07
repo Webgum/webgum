@@ -55,14 +55,4 @@
     }
   }
 
-  .menuWrapper {
-    position: relative;
-    height: 40px;
-    width: 30px;
-
-    @media screen and (max-width: 800px) {
-      height: 25px;
-      width: 25px;
-    }
-  }
 }

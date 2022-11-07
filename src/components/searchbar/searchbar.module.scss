@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+
+  @media screen and (max-width: 800px) {
+    padding: 1rem 3rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 1rem;
+  }
+
+  //   .searchbar {
+  //     background-color: #945bdd;
+  //   }
+
+  .searchbox {
+    .searchbox__input {
+      background-color: #70e2ff !important;
+      border-style: solid;
+
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      border-radius: 20px;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .searchbox__button {
+      background-color: #70e2ff !important;
+
+      border-radius: 20px;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  input {
+    background-color: #70e2ff;
+    font-size: 0.8rem;
+    height: 3em;
+    width: 50%;
+
+    border-style: none;
+    padding: 0 1em;
+
+    color: #945bdd;
+    font-weight: 600;
+  }
+
+  input::placeholder {
+    background: none;
+    color: #945bdd;
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+
+  button {
+    background-color: #945bdd;
+    border-style: none;
+    height: 3em !important;
+    margin-right: 5em !important;
+    cursor: pointer;
+  }
+  .searchbutton {
+    margin-right: 23rem;
+
+    background-color: #945bdd;
+    border-radius: 1em;
+    border-style: none;
+    height: 3em;
+    width: 3em;
+
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+
+    @media screen and (max-width: 800px) {
+      font-size: 35px;
+    }
+  }
+}

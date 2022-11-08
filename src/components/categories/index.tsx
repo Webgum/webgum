@@ -1,33 +1,33 @@
-import styles from "./categories.module.scss";
-import BookCat from "../../assets/bookcat.png";
-import Image from "next/image";
-import BookIcon from "../../assets/3D.svg";
+import styles from './categories.module.scss';
+import BookCat from '../../assets/bookcat.png';
+import Image from 'next/image';
+import BookIcon from '../../assets/3D.svg';
 
 const Categories = () => {
   const categories = [
     {
-      title: "Made By Experts",
-      description: "Lorem ipsum dolor sit amet consectetur",
-      image: "link to image here",
-      tags: ["notion", "figma", "sketch"],
+      title: 'Made By Experts',
+      description: 'Lorem ipsum dolor sit amet consectetur',
+      image: 'link to image here',
+      tags: ['notion', 'figma', 'sketch'],
     },
     {
-      title: "lorem ipsum",
-      description: "Lorem ipsum dolor sit amet consectetur",
-      image: "link to image here",
-      tags: ["notion", "figma", "sketch"],
+      title: 'lorem ipsum',
+      description: 'Lorem ipsum dolor sit amet consectetur',
+      image: 'link to image here',
+      tags: ['notion', 'figma', 'sketch'],
     },
     {
-      title: "dolor sit amet",
-      description: "Lorem ipsum dolor sit amet consectetur",
-      image: "link to image here",
-      tags: ["notion", "figma", "sketch"],
+      title: 'dolor sit amet',
+      description: 'Lorem ipsum dolor sit amet consectetur',
+      image: 'link to image here',
+      tags: ['notion', 'figma', 'sketch'],
     },
     {
-      title: "consectetur",
-      description: "Lorem ipsum dolor sit amet consectetur",
-      image: "link to image here",
-      tags: ["notion", "figma", "sketch"],
+      title: 'consectetur',
+      description: 'Lorem ipsum dolor sit amet consectetur',
+      image: 'link to image here',
+      tags: ['notion', 'figma', 'sketch'],
     },
   ];
 
@@ -41,13 +41,13 @@ const Categories = () => {
           </h2>
         </div>
         <div>
-          {" "}
+          {/* {" "}
           <Image
             src={BookCat}
             alt="a cat lying on books"
             height={200}
             width={200}
-          />
+          /> */}
         </div>
       </div>
       <div className={styles.cards}>
@@ -55,7 +55,7 @@ const Categories = () => {
           <div key={category.title} className={styles.cardItems}>
             <div className={styles.card}>
               <div className={styles.cardSvg}>
-                <Image src={BookIcon} alt="book icon" height={50} width={50} />
+                <Image src={BookIcon} alt='book icon' height={50} width={50} />
               </div>
               <div className={styles.cardTexts}>
                 <div className={styles.cardTitle}>

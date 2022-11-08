@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 1rem 5rem;
   color: #70e2ff;
+
   @media screen and (max-width: 800px) {
     padding: 1rem 3rem;
   }
@@ -18,6 +19,10 @@
 
     @media screen and (max-width: 800px) {
       font-size: 35px;
+    }
+
+    @media screen and (max-width: 500px) {
+      font-size: 20px;
     }
   }
 
@@ -50,9 +55,93 @@
       display: none;
     }
 
-    & > * {
+    &>* {
       cursor: pointer;
     }
+  }
+
+  .hamburger {
+    display: none;
+
+    @media screen and (max-width: 800px) {
+      display: block;
+    }
+
+  }
+
+  .hamburgerContainer {
+    position: relative;
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 30px;
+    position: relative;
+
+    .bar {
+      padding: 0;
+      width: 30px;
+      height: 4px;
+      background-color: #70e2ff;;
+      display: block;
+      border-radius: 4px;
+      transition: all 0.4s ease-in-out;
+      position: absolute;
+    }
+
+    .bar1 {
+      top: 0;
+      transform-origin: 5%;
+    }
+
+    .bar2 {
+      top: 13.5px;
+    }
+
+    .bar3 {
+      top: 13.5px;
+      right: 0;
+    }
+
+    .bar4 {
+      transform-origin: 5%;
+      bottom: 0;
+    }
+  }
+
+  .visuallyHidden {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+  }
+
+  .checkbox:checked+label>.hamburger>.bar1 {
+    transform: rotate(45deg);
+    height: 3px;
+    width: 42px;
+  }
+
+  .checkbox:checked+label>.hamburger>.bar3 {
+    transform: rotate(45deg);
+    height: 3px;
+    background-color: transparent;
+  }
+
+  .checkbox:checked+label>.hamburger>.bar2 {
+    transform: rotate(-45deg);
+    height: 3px;
+    background-color: transparent;
+  }
+
+  .checkbox:checked+label>.hamburger>.bar4 {
+    transform: rotate(-45deg);
+    height: 3px;
+    width: 42px;
   }
 
 }

@@ -8,7 +8,7 @@ import MockData from '../mockdata';
 import { Button } from '@nextui-org/react';
 
 const Categories = () => {
-  const [category, setCategory] = useState<0 | 1 | 2 | 3 | 4>(0);
+  const [category, setCategory] = useState(0);
 
   const categories = [
     {
@@ -164,6 +164,55 @@ const Categories = () => {
         </Button>
         <MockData />
       </>
+    );
+  } else {
+    return (
+      <main className={styles.main}>
+        <div className={styles.heading}>
+          <div>
+            <h1 className={styles.title}>Categories</h1>
+            <h2 className={styles.subTitle}>
+              Finding your perfect product just got easier!
+            </h2>
+          </div>
+          <div>
+            {/* {" "}
+  <Image
+    src={BookCat}
+    alt="a cat lying on books"
+    height={200}
+    width={200}
+  /> */}
+          </div>
+        </div>
+        <div className={styles.cards}>
+          {categories.map((category) => (
+            <div key={category.id} className={styles.cardItems}>
+              <div
+                className={styles.card}
+                onClick={() => setCategory(category.id)}
+              >
+                <div className={styles.cardSvg}>
+                  <Image
+                    src={BookIcon}
+                    alt='book icon'
+                    height={50}
+                    width={50}
+                  />
+                </div>
+                <div className={styles.cardTexts}>
+                  <div className={styles.cardTitle}>
+                    <p>{category.title}</p>
+                  </div>
+                  <div className={styles.cardDescription}>
+                    <p>{category.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
     );
   }
 };

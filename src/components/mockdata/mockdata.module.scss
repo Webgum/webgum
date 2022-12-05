@@ -35,11 +35,13 @@
 }
 
 .cardTexts {
+  font-size: 2em;
   display: flex;
   flex-direction: column;
   gap: 3rem;
   margin-top: 30%;
   text-align: center;
+  color: #000;
 }
 .cardSvg {
   margin-top: 20%;
@@ -80,12 +82,23 @@
   }
 }
 
+.mockDataGrid {
+  margin-left: 2em !important;
+  margin-right: 2em !important;
+}
+
 .cardDescription {
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.2;
-  margin-bottom: 0.5rem;
+  margin: 1rem;
   color: #212224;
+}
+
+.cardImages {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .cardTitle {
@@ -93,8 +106,4 @@
   line-height: 28px;
   letter-spacing: 0em;
   color: #212224;
-}
-
-.backbutton {
-  background-color: #212224;
 }

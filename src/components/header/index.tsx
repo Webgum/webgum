@@ -1,10 +1,10 @@
-import styles from "./header.module.scss";
+import styles from './header.module.scss';
 
 import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUser,
-} from "react-icons/ai";
+} from 'react-icons/ai';
 
 const Header = () => {
   return (
@@ -13,18 +13,18 @@ const Header = () => {
       <div>
         <div className={styles.menus}>
           <button className={styles.sellBtn}>Start Selling</button>
-          <AiOutlineUser size="35px" />
-          <AiOutlineShoppingCart size="35px" />
-          <AiOutlineSearch size="35px" />
+          <AiOutlineUser size='35px' />
+          <AiOutlineShoppingCart size='35px' />
+          <AiOutlineSearch size='35px' />
         </div>
 
         <div className={styles.hamburgerContainer}>
           <input
-            type="checkbox"
-            id="checkbox"
+            type='checkbox'
+            id='checkbox'
             className={`${styles.checkbox} ${styles.visuallyHidden}`}
           />
-          <label htmlFor="checkbox">
+          <label htmlFor='checkbox'>
             <div className={styles.hamburger}>
               <span className={`${styles.bar} ${styles.bar1}`}></span>
               <span className={`${styles.bar} ${styles.bar2}`}></span>

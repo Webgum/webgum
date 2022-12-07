@@ -1,43 +1,80 @@
 .container {
-    padding-top: 4rem;
+    padding: 4rem 0;
     font-family: 'Poppins', sans-serif;
     text-align: center;
 
-    p {
-    width: 60%;
-    margin: 0 auto;
-    }
+    @media screen and (max-width: 500px) {
+            padding: 3rem 0;
+        }
+    
+        h1 {
+            @media screen and (max-width: 500px) {
+                font-size: 2.5rem;
+            }
+    
+            @media screen and (max-width: 350px) {
+                font-size: 2rem;
+            }
+        }
+    
+        p {
+            width: 60%;
+            margin: 0 auto;
+    
+            @media screen and (max-width: 800px) {
+                width: 70%;
+            }
+    
+            @media screen and (max-width: 500px) {
+                font-size: .8rem;
+                width: 85%;
+            }
+        }
 }
 
 .formContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 60%;
-    margin: 2rem auto;
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+width: 60%;
+margin: 2rem auto;
+
+    @media screen and (max-width: 800px) {
+            width: 70%;
+        }
+    
+        @media screen and (max-width: 500px) {
+            font-size: .8rem;
+            width: 85%;
+            gap: 1rem;
+        }
 
     input {
-        background-color: #70E2FF;
-        color: #000000;
-        padding: 1rem;
-        border: none;
-        caret-color: #945BDD;
+    background-color: #70E2FF;
+    color: #000000;
+    padding: 1rem;
+    border: none;
+    caret-color: #945BDD;
     }
 
     input::placeholder {
-        color: grey;
+    color: grey;
     }
 
     button {
-        background: #945BDD;
-        cursor: pointer;
-        padding: .5rem 1rem;
-        margin: 0 auto;
-        border: none;
-        text-transform: uppercase;
+    background: #945BDD;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    margin: 0 auto;
+    border: none;
+    text-transform: uppercase;
+    @media screen and (max-width: 800px) {
+        padding: .5rem 3rem;
+    }
     }
 
-    &>* {}
-
+  .errormessage {
+      color: red;
+  }
 
 }

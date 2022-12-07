@@ -1,0 +1,92 @@
+.container {
+    padding: 6rem 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+    @media screen and (max-width: 500px) {
+        padding: 3rem 0;
+    }
+
+    h1 {
+        @media screen and (max-width: 500px) {
+            font-size: 2.5rem;
+        }
+
+        @media screen and (max-width: 350px) {
+            font-size: 2rem;
+        }
+    }
+
+    p {
+        width: 50%;
+        margin: 0 auto;
+
+        @media screen and (max-width: 800px) {
+            width: 70%;
+        }
+
+        @media screen and (max-width: 500px) {
+            font-size: .8rem;
+            width: 85%;
+        }
+    }
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 50%;
+    margin: 2rem auto;
+
+
+    @media screen and (max-width: 800px) {
+        width: 70%;
+    }
+
+    @media screen and (max-width: 500px) {
+        font-size: .8rem;
+        width: 85%;
+        gap: 2rem;
+    }
+
+    input {
+        background-color: #70E2FF;
+        color: #000000;
+        padding: 1rem;
+        border: none;
+        caret-color: #945BDD;
+    }
+
+    input::placeholder {
+        color: grey;
+    }
+
+    button {
+        background: #945BDD;
+        cursor: pointer;
+        padding: .5rem 2.5rem;
+        border: none;
+        text-transform: uppercase;
+    }
+
+    .errormessage {
+        color: red;
+    }
+}
+
+.btns {
+    display: flex;
+    gap: 2.4rem;
+
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    @media screen and (max-width: 500px) {
+        gap: 1rem;
+    }
+}
+
+.walletbtn {}

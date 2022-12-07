@@ -1,18 +1,17 @@
-import styles from "./signup.module.scss";
 import { Formik } from "formik";
 import Link from "next/link";
+import styles from "./signin.module.scss";
 
 interface Values {
   name: string;
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
-const SignUpComponent = () => {
+const SignInComponent = () => {
   return (
     <div className={styles.container}>
-      <h1>Hello!!</h1>
+      <h1>Welcome Back!!</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, vitae
         consequuntur eligendi Sequi, vitae consequuntur eligendi
@@ -22,18 +21,13 @@ const SignUpComponent = () => {
           name: "",
           email: "",
           password: "",
-          confirmPassword: "",
         }}
         validate={(values: Values) => {
           const errors: any = {};
-          if (!values.name) {
-            errors.name = "Required";
-          } else if (!values.password) {
+          if (!values.password) {
             errors.password = "Required";
           } else if (values.password.length < 6) {
             errors.password = "Password should exceed 6 characters";
-          } else if (values.password !== values.confirmPassword) {
-            errors.confirmPassword = "Your passwords should match";
           } else if (!values.email) {
             errors.email = "Required";
           } else if (
@@ -75,20 +69,6 @@ const SignUpComponent = () => {
             )}
 
             <input
-              type="text"
-              name="name"
-              placeholder="Username"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-            />
-            {errors.name && (
-              <div className={styles.errormessage}>
-                {errors.name && touched.name && errors.name}
-              </div>
-            )}
-
-            <input
               type="password"
               name="password"
               placeholder="Password"
@@ -101,32 +81,27 @@ const SignUpComponent = () => {
                 {errors.password && touched.password && errors.password}
               </div>
             )}
-
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.confirmPassword}
-            />
-            {errors.confirmPassword && (
-              <div className={styles.errormessage}>
-                {errors.confirmPassword &&
-                  touched.confirmPassword &&
-                  errors.confirmPassword}
-              </div>
-            )}
-
-            <button type="submit" disabled={isSubmitting}>
-              Sign Up
-            </button>
+            <div className={styles.btns}>
+              <button type="submit" disabled={isSubmitting}>
+                Sign In
+              </button>
+              <button type="submit" disabled={isSubmitting}>
+                Sign In With Google
+              </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.walletbtn}
+              >
+                Connect Wallet
+              </button>
+            </div>
           </form>
         )}
       </Formik>
-      <Link href="/login">Existing User?</Link>
+      <Link href="/register">New User?</Link>
     </div>
   );
 };
 
-export default SignUpComponent;
+export default SignInComponent;

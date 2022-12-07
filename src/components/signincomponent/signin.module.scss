@@ -47,7 +47,7 @@
     @media screen and (max-width: 500px) {
         font-size: .8rem;
         width: 85%;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     input {
@@ -83,6 +83,10 @@
         flex-direction: column;
         gap: 1.5rem;
     }
+
+        @media screen and (max-width: 500px) {
+            gap: 1rem;
+        }
 }
 
 .walletbtn {}

@@ -17,11 +17,11 @@
     margin: 2rem auto;
 
     input {
-        background-color: #70E2FF;
-        color: #000000;
-        padding: 1rem;
-        border: none;
-        caret-color: #945BDD;
+    background-color: #70E2FF;
+    color: #000000;
+    padding: 1rem;
+    border: none;
+    caret-color: #945BDD;
     }
 
     input::placeholder {
@@ -37,7 +37,8 @@
         text-transform: uppercase;
     }
 
-    &>* {}
-
+  .errormessage {
+      color: red;
+  }
 
 }

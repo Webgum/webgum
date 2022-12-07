@@ -1,0 +1,50 @@
+.container {
+    padding-top: 6rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+    p {
+    width: 50%;
+    margin: 0 auto;
+    }
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 50%;
+    margin: 2rem auto;
+
+    input {
+        background-color: #70E2FF;
+        color: #000000;
+        padding: 1rem;
+        border: none;
+        caret-color: #945BDD;
+    }
+
+    input::placeholder {
+        color: grey;
+    }
+
+    button {
+    background: #945BDD;
+    cursor: pointer;
+    padding: .5rem 3rem;
+   
+    border: none;
+    text-transform: uppercase;
+    }
+
+    .errormessage {
+        color: red;
+    }
+}
+
+.btns {
+display: flex;
+justify-content: space-between;
+}
+
+.walletbtn {}

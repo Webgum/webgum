@@ -1,0 +1,43 @@
+.container {
+    padding-top: 4rem;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+    p {
+    width: 60%;
+    margin: 0 auto;
+    }
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 60%;
+    margin: 2rem auto;
+
+    input {
+        background-color: #70E2FF;
+        color: #000000;
+        padding: 1rem;
+        border: none;
+        caret-color: #945BDD;
+    }
+
+    input::placeholder {
+        color: grey;
+    }
+
+    button {
+        background: #945BDD;
+        cursor: pointer;
+        padding: .5rem 1rem;
+        margin: 0 auto;
+        border: none;
+        text-transform: uppercase;
+    }
+
+    &>* {}
+
+
+}

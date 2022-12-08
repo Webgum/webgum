@@ -1,13 +1,17 @@
 import styles from "./header.module.scss";
-
+import { useState } from "react";
 import {
   AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUser,
 } from "react-icons/ai";
 import Link from "next/link";
+import MobileMenu from "../mobilemenu";
+
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  console.log(isOpen)
   return (
     <div className={styles.container}>
       <div className={styles.logo}>webgum</div>
@@ -26,6 +30,7 @@ const Header = () => {
             type="checkbox"
             id="checkbox"
             className={`${styles.checkbox} ${styles.visuallyHidden}`}
+            onClick={() => setIsOpen(!isOpen)}
           />
           <label htmlFor="checkbox">
             <div className={styles.hamburger}>
@@ -36,6 +41,7 @@ const Header = () => {
             </div>
           </label>
         </div>
+       { isOpen && <MobileMenu />}
       </div>
     </div>
   );

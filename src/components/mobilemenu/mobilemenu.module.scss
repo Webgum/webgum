@@ -1,0 +1,41 @@
+.container {
+    font-family: 'Poppins', sans-serif;
+    background-color: #171126;
+    z-index: 500;
+    height: 40vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.logo {
+    font-size: 20px;
+}
+
+.menucontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 2.5rem;
+    margin-top: 2rem;
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+    }
+
+    button {
+        background: #945BDD;
+        cursor: pointer;
+        padding: .5rem .8rem;
+        border: none;
+        text-transform: uppercase;
+    }
+}

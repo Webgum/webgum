@@ -12,12 +12,12 @@
   margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
+  gap: .8rem;
 
-  // stack items vertically on small screens
-  @media (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     flex-direction: column;
-    gap: 1rem;
   }
+    
 }
 
 .title {
@@ -35,7 +35,6 @@
   font-size: 1.7rem;
   font-weight: 400;
   line-height: 27.78px;
-  margin: .5rem 0;
   color: #d5b9fa;
 
   @media screen and (max-width: 500px) {

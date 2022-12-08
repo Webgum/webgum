@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import HeroImage from '../../assets/herosection.png';
 import styles from './herosection.module.scss';
 
@@ -16,7 +17,9 @@ const HeroSection = () => {
           fees when compared to other leading platforms. Get paid instantly with
           every sale!
         </p>
-        <button className={styles.sellBtn}>Start Selling</button>
+        <div className={styles.sellBtn}>
+          <Link href="/list-project">Start Selling</Link>
+        </div>
       </section>
       <section className={styles.section2}>
         <Image

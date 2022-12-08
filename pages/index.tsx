@@ -19,7 +19,6 @@ const Home: NextPage = () => {
         <Header />
         <HeroSection />
         <SearchBar />
-
         <Categories />
       </main>
     </div>

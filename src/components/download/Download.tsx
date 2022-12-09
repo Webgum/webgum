@@ -61,13 +61,13 @@ export default function Download({ cid }: DownloadProps) {
         <button onClick={() => prepareDownload()}>Prepare Download</button>
       )}
 
-      <button
+      {/* <button
         onClick={() => {
           console.log(links);
         }}
       >
         Links
-      </button>
+      </button> */}
 
       {loading && <div> Loading.... </div>}
 

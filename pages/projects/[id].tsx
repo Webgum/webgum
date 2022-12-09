@@ -23,26 +23,22 @@ export default function Project() {
   const [loading, setLoading] = useState(true)
   const router = useRouter();
   const { id } = router.query;
-  console.log("ID:", id);
+  const contract = Abi__factory.connect(CONTRACT_ID, wallet);
 
-  //   console.log("contract", contract);
 
   useEffect(() => {
     async function getProjectInfo() {
       if (typeof id == "string") {
         try {
-          const contract = Abi__factory.connect(CONTRACT_ID, wallet);
+          
           let inputID = parseInt(id);
           let resp = await contract.functions
             .get_project(inputID)
             .txParams({ gasPrice: 1 })
             .call();
-          console.log("PROJECT VALUE", resp);
           setProject(resp.value);
           const ipfsResp = await fetch(`https://ipfs.io/ipfs/${resp.value.metadata}/data.json`);
-          console.log("IPFS")
           const json = await ipfsResp.json();
-          console.log("IPFS DATA:", json)
           setIpfsData(json);
           setLoading(false)
         } catch (error) {
@@ -69,7 +65,7 @@ export default function Project() {
             <Download cid={project.metadata}/>
         </div>}
           
-          <BuyButton />
+          <BuyButton projectID={id} />
         </div>
       )}
     </div>

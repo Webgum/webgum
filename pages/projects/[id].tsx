@@ -19,28 +19,28 @@ const wallet = new WalletUnlocked(
 
 export default function Project() {
   const [project, setProject] = useState<ProjectOutput>();
-  const [ipfsData, setIpfsData] = useState<any>()
-  const [loading, setLoading] = useState(true)
+  const [ipfsData, setIpfsData] = useState<any>();
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
   const contract = Abi__factory.connect(CONTRACT_ID, wallet);
-
 
   useEffect(() => {
     async function getProjectInfo() {
       if (typeof id == "string") {
         try {
-          
           let inputID = parseInt(id);
           let resp = await contract.functions
             .get_project(inputID)
             .txParams({ gasPrice: 1 })
             .call();
           setProject(resp.value);
-          const ipfsResp = await fetch(`https://ipfs.io/ipfs/${resp.value.metadata}/data.json`);
+          const ipfsResp = await fetch(
+            `https://ipfs.io/ipfs/${resp.value.metadata}/data.json`
+          );
           const json = await ipfsResp.json();
           setIpfsData(json);
-          setLoading(false)
+          setLoading(false);
         } catch (error) {
           console.log("ERROR: ", error);
         }
@@ -59,12 +59,16 @@ export default function Project() {
           <div>Price: {project.price.format()}</div>
           <div>IPFS CID: {project.metadata}</div>
           <div>Owner address: {project.owner_address.Address?.value}</div>
-          {ipfsData && <div>
-            {ipfsData.name && <div>Name: {ipfsData.name}</div>}
-            {ipfsData.description && <div>Description: {ipfsData.description} </div>}
-            <Download cid={project.metadata}/>
-        </div>}
-          
+          {ipfsData && (
+            <div>
+              {ipfsData.name && <div>Name: {ipfsData.name}</div>}
+              {ipfsData.description && (
+                <div>Description: {ipfsData.description} </div>
+              )}
+              <Download cid={project.metadata} />
+            </div>
+          )}
+
           <BuyButton projectID={id} />
         </div>
       )}

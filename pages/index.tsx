@@ -5,6 +5,7 @@ import HeroSection from '../src/components/herosection';
 import styles from '../styles/Home.module.css';
 import Categories from '../src/components/categories';
 import SearchBar from '../src/components/searchbar';
+import HowItWorks from '../src/components/how-it-works/HowItWorks';
 
 const Home: NextPage = () => {
   return (
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
         <HeroSection />
         <SearchBar />
         <Categories />
+        <HowItWorks />
       </main>
     </div>
   );

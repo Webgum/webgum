@@ -114,104 +114,98 @@ export default function ListProject() {
     <div>
       {!projectID ? (
         <section>
-          {isConnected ? (
-            <>
-              {loading ? (
-                <div>Loading...</div>
-              ) : (
-                <form onSubmit={handleSubmit} className={styles.formContainer}>
+          <>
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <form onSubmit={handleSubmit} className={styles.formContainer}>
+                <div>
+                  <label htmlFor="files-name">Project Name</label>
                   <div>
-                    <label htmlFor="files-name">Project Name</label>
-                    <div>
-                      <input
-                        id="files-name"
-                        name="files-name"
-                        type="text"
-                        required
-                        value={projectName}
-                        onChange={(e) => setProjectName(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      id="files-name"
+                      name="files-name"
+                      type="text"
+                      required
+                      value={projectName}
+                      onChange={(e) => setProjectName(e.target.value)}
+                    />
                   </div>
+                </div>
 
+                <div>
+                  <label htmlFor="files-description">Project Description</label>
                   <div>
-                    <label htmlFor="files-description">
-                      Project Description
-                    </label>
-                    <div>
-                      <input
-                        id="files-description"
-                        name="files-description"
-                        type="text"
-                        required
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                      />
-                    </div>
+                    <input
+                      id="files-description"
+                      name="files-description"
+                      type="text"
+                      required
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
                   </div>
+                </div>
 
+                <div>
+                  <label htmlFor="files">Project Files</label>
                   <div>
-                    <label htmlFor="files">Project Files</label>
-                    <div>
-                      <input
-                        type="file"
-                        id="files"
-                        multiple
-                        required
-                        onChange={(e) => {
-                          if (e.target.files && e.target.files.length > 0) {
-                            setFiles(e.target.files);
-                          }
-                        }}
-                      />
-                    </div>
+                    <input
+                      type="file"
+                      id="files"
+                      multiple
+                      required
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                          setFiles(e.target.files);
+                        }
+                      }}
+                    />
                   </div>
+                </div>
 
+                <div>
+                  <label htmlFor="price">Price</label>
                   <div>
-                    <label htmlFor="price">Price</label>
-                    <div>
-                      <input
-                        type="number"
-                        id="price"
-                        required
-                        min="0"
-                        step="any"
-                        inputMode="decimal"
-                        placeholder="0.00"
-                        onChange={(e) => {
-                          setPrice(e.target.value);
-                        }}
-                      />
-                    </div>
+                    <input
+                      type="number"
+                      id="price"
+                      required
+                      min="0"
+                      step="any"
+                      inputMode="decimal"
+                      placeholder="0.00"
+                      onChange={(e) => {
+                        setPrice(e.target.value);
+                      }}
+                    />
                   </div>
+                </div>
 
+                <div>
+                  <label htmlFor="max-buyers">
+                    Max Buyers (set to 0 if unliited)
+                  </label>
                   <div>
-                    <label htmlFor="max-buyers">
-                      Max Buyers (set to 0 if unliited)
-                    </label>
-                    <div>
-                      <input
-                        type="number"
-                        id="max-buyers"
-                        required
-                        min="0"
-                        step="1"
-                        onChange={(e) => {
-                          setMaxBuyers(e.target.value);
-                        }}
-                      />
-                    </div>
+                    <input
+                      type="number"
+                      id="max-buyers"
+                      required
+                      min="0"
+                      step="1"
+                      onChange={(e) => {
+                        setMaxBuyers(e.target.value);
+                      }}
+                    />
                   </div>
+                </div>
 
-                  <div>
-                    <button type="submit">List Project</button>
-                  </div>
-                </form>
-              )}
-            </>
-          ) : (
-            <ConnectButton />
-          )}
+                <div>
+                  <button type="submit">List Project</button>
+                </div>
+              </form>
+            )}
+          </>
         </section>
       ) : (
         <div>Your item is listed! The project id is {projectID.format()}</div>

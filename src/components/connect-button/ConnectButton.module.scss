@@ -1,8 +1,49 @@
-.connect_button {
-    color: white;
-    border-radius: 12px;
-    padding: 10px 40px;
-    border: 4px solid white;
-    background: none;
-    cursor: pointer;
+.container {
+    padding: 8rem 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+
+    @media screen and (max-width: 500px) {
+        padding: 3rem 0;
+    }
+
+    h1 {
+        font-size: 4rem;
+
+        @media screen and (max-width: 500px) {
+            font-size: 2.5rem;
+        }
+
+        @media screen and (max-width: 350px) {
+            font-size: 2rem;
+        }
+    }
+
+    p {
+        width: 60%;
+        margin: 0 auto;
+        font-size: 1.5rem;
+
+        @media screen and (max-width: 800px) {
+            width: 70%;
+        }
+
+        @media screen and (max-width: 500px) {
+            font-size: .8rem;
+            width: 85%;
+        }
+    }
+
+    button {
+        background: #945BDD;
+        cursor: pointer;
+        padding: .8rem 1.5rem;
+        margin: 3rem auto;
+        border: none;
+        text-transform: uppercase;
+
+        @media screen and (max-width: 800px) {
+            padding: .5rem 3rem;
+        }
+    }
 }

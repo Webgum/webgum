@@ -18,7 +18,7 @@ const HeroSection = () => {
           every sale!
         </p>
         <div className={styles.sellBtn}>
-          <Link href="/list-project">Start Selling</Link>
+          <Link href="/user">Start Selling</Link>
         </div>
       </section>
       <section className={styles.section2}>

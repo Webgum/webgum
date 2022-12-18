@@ -1,0 +1,33 @@
+.container {
+    padding: 3rem 5rem;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btns {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        align-items: center;
+    }
+
+    button {
+        background: #945bdd;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 100px;
+        padding: 0.6rem 1rem;
+        cursor: pointer;
+    }
+
+    button:focus {
+        border: 3px solid #70e2ff;
+    }
+}

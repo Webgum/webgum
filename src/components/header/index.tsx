@@ -16,14 +16,14 @@ const Header = () => {
       <div className={styles.logo}>webgum</div>
       <div>
         <div className={styles.menus}>
-          <Link href="/list-project">
+          <Link href="/user">
             <button className={styles.sellBtn}>Start Selling</button>
           </Link>
 
-          <Link href="/register">
+          {/* <Link href="/register">
             <AiOutlineUser size="35px" />
           </Link>
-          <AiOutlineShoppingCart size="35px" />
+          <AiOutlineShoppingCart size="35px" /> */}
           <AiOutlineSearch size="35px" />
         </div>
 

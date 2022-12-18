@@ -1,30 +1,39 @@
+.container {
+    padding: 3rem 5rem;
+    font-family: 'Poppins', sans-serif;
+
+    h1 {
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #945bdd;
+    }
+}
+
 .formContainer {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    width: 60%;
-    margin: 2rem auto;
+    padding: 2rem 0;
 
-    @media screen and (max-width: 800px) {
-        width: 70%;
-    }
+    @media screen and (max-width: 800px) {}
 
-    @media screen and (max-width: 500px) {
-        font-size: .8rem;
-        width: 85%;
-        gap: 1rem;
-    }
+    @media screen and (max-width: 500px) {}
 
     input {
         background-color: #70E2FF;
         color: #000000;
-        padding: 1rem;
+        padding: .5rem;
         border: none;
         caret-color: #945BDD;
+        width: 70%;
+
     }
 
     input::placeholder {
         color: grey;
+    }
+
+    input[type=file] {
+        display: none;
     }
 
     button {
@@ -33,15 +42,27 @@
         padding: .5rem 1rem;
         margin: 0 auto;
         border: none;
+        border-radius: 5px;
         text-transform: uppercase;
+    }
 
-        @media screen and (max-width: 800px) {
-            padding: .5rem 3rem;
+    .flexDiv {
+        display: flex;
+        gap: 3rem;
+    }
+
+    .fileInput {
+        border: 2px solid #70E2FF;
+        width: 19%;
+        padding: 1rem;
+        cursor: pointer;
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
         }
     }
 
-    .errormessage {
-        color: red;
-    }
 
 }

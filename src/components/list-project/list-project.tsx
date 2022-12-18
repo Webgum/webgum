@@ -3,6 +3,7 @@ import styles from "./list-project.module.scss";
 import { useFuelWeb3 } from "../../hooks/useFuelWeb3";
 import { useIsConnected } from "../../hooks/useIsConnected";
 import { ConnectButton } from "../connect-button/ConnectButton";
+import { FiUpload } from "react-icons/fi";
 import { WalletLocked, bn, BN } from "fuels";
 import { Abi__factory } from "../../contracts";
 
@@ -118,92 +119,101 @@ export default function ListProject() {
             {loading ? (
               <div>Loading...</div>
             ) : (
-              <form onSubmit={handleSubmit} className={styles.formContainer}>
-                <div>
-                  <label htmlFor="files-name">Project Name</label>
+              <div className={styles.container}>
+                <h1>List Your Project</h1>
+                <form onSubmit={handleSubmit} className={styles.formContainer}>
                   <div>
-                    <input
-                      id="files-name"
-                      name="files-name"
-                      type="text"
-                      required
-                      value={projectName}
-                      onChange={(e) => setProjectName(e.target.value)}
-                    />
+                    <label htmlFor="files-name">Project Name</label>
+                    <div>
+                      <input
+                        id="files-name"
+                        name="files-name"
+                        type="text"
+                        required
+                        value={projectName}
+                        placeholder="Name of Project"
+                        onChange={(e) => setProjectName(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="files-description">Project Description</label>
                   <div>
-                    <input
-                      id="files-description"
-                      name="files-description"
-                      type="text"
-                      required
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
+                    <label htmlFor="files-description">
+                      Project Description
+                    </label>
+                    <div>
+                      <input
+                        id="files-description"
+                        name="files-description"
+                        type="text"
+                        required
+                        value={description}
+                        placeholder="Description"
+                        onChange={(e) => setDescription(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="files">Project Files</label>
+                  <div className={styles.fileInput}>
+                    <label htmlFor="files">
+                      Upload Project Files
+                      <FiUpload size="20px"/>
+                      <input
+                        type="file"
+                        id="files"
+                        multiple
+                        required
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files.length > 0) {
+                            setFiles(e.target.files);
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <div className={styles.flexDiv}>
+                    <div>
+                      <label htmlFor="price">Price</label>
+                      <div>
+                        <input
+                          type="number"
+                          id="price"
+                          required
+                          min="0"
+                          step="any"
+                          inputMode="decimal"
+                          placeholder="0.00"
+                          onChange={(e) => {
+                            setPrice(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="max-buyers">
+                        Max Buyers (set to 0 if unliited)
+                      </label>
+                      <div>
+                        <input
+                          type="number"
+                          id="max-buyers"
+                          required
+                          min="0"
+                          step="1"
+                          onChange={(e) => {
+                            setMaxBuyers(e.target.value);
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   <div>
-                    <input
-                      type="file"
-                      id="files"
-                      multiple
-                      required
-                      onChange={(e) => {
-                        if (e.target.files && e.target.files.length > 0) {
-                          setFiles(e.target.files);
-                        }
-                      }}
-                    />
+                    <button type="submit">List Project</button>
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="price">Price</label>
-                  <div>
-                    <input
-                      type="number"
-                      id="price"
-                      required
-                      min="0"
-                      step="any"
-                      inputMode="decimal"
-                      placeholder="0.00"
-                      onChange={(e) => {
-                        setPrice(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="max-buyers">
-                    Max Buyers (set to 0 if unliited)
-                  </label>
-                  <div>
-                    <input
-                      type="number"
-                      id="max-buyers"
-                      required
-                      min="0"
-                      step="1"
-                      onChange={(e) => {
-                        setMaxBuyers(e.target.value);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <button type="submit">List Project</button>
-                </div>
-              </form>
+                </form>
+              </div>
             )}
           </>
         </section>

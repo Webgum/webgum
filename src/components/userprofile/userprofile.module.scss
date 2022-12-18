@@ -1,5 +1,6 @@
 .container {
     padding: 3rem 5rem;
+    font-family: 'Poppins', sans-serif;
 
     header {
         display: flex;
@@ -10,8 +11,10 @@
     .btns {
         display: flex;
         gap: 1rem;
-        margin-top: 2rem;
+        margin: 2rem 0;
         align-items: center;
+        padding-bottom: 3rem;
+        border-bottom: 2px solid #945bdd;
     }
 
     button {
@@ -22,12 +25,17 @@
         line-height: 20px;
         text-transform: uppercase;
         border: none;
-        border-radius: 100px;
+        border-radius: 50px;
         padding: 0.6rem 1rem;
         cursor: pointer;
+
     }
 
-    button:focus {
+    .clickedBtn {
         border: 3px solid #70e2ff;
+    }
+
+    .headerBtn {
+        border-radius: 10px;
     }
 }

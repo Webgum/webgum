@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    gap: 3rem;
+    font-family: 'Poppins', sans-serif;
+
+    .cardContainer {
+        background: #945bdd;
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        cursor: pointer;
+
+    }
+
+    .imgContainer {
+        height: 250px;
+        width: 100%;
+        position: relative;
+        border-bottom: 2px solid white;
+        margin-bottom: .5rem;
+    }
+
+
+    .cardDetails {
+       color: white;
+     p {
+        text-align: center;
+        font-weight: 500;
+        padding-bottom: .5rem;
+        text-transform: uppercase;
+        font-family: 'Poppins', sans-serif;
+     }   
+    }
+
+    .btmDetails {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 2px solid white;
+        padding: 0 .5rem;
+    }
+
+    .review {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        border-right: 2px solid white;
+        padding: .5rem;
+        padding-right: 4rem;
+        font-size: 12px;
+    }
+}

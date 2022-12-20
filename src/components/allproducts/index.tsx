@@ -1,71 +1,41 @@
-import Image from "next/image";
+import ProjectCard from "../projectcard";
 import styles from "./allproducts.module.scss";
-import { AiFillStar } from "react-icons/ai";
-import HeroImage from "../../assets/herosection.png";
+import { useState, useEffect } from 'react'
+import { ProjectOutput, VectorOutput, WebgumContractAbi } from "../../contracts/WebgumContractAbi"
 
-const AllProducts = () => {
+interface IAllProducts{
+  creatorVector: VectorOutput | undefined,
+  contract: WebgumContractAbi | null
+}
+
+
+const AllProducts = ({ creatorVector, contract }: IAllProducts) => {
+  const [totalProjects, setTotalProjects] = useState(0)
+  const [allProjects, setAllProjects] = useState<ProjectOutput[]>()
+
+  useEffect(() => {
+    async function getProjects(){
+      if(creatorVector && contract){
+        let num_of_projects = parseFloat(creatorVector.current_ix.format()) * 1_000_000_000
+        setTotalProjects(num_of_projects)
+        let projects = [];
+        for (let i = 0; i < num_of_projects; i++) {
+          // loop through each project created and get the project
+          let resp = await contract.functions.get_project(creatorVector.inner[i]).get();
+          projects.push(resp.value)
+        }
+        setAllProjects(projects)
+      }
+    }
+    getProjects();
+  }, [creatorVector, contract])
+  
+
   return (
     <div className={styles.container}>
-      <div className={styles.cardContainer}>
-        <div className={styles.imgContainer}>
-          <Image src={HeroImage} objectFit="cover" layout="fill" />
-        </div>
-        <div className={styles.cardDetails}>
-          <p>Gucci Louis Vou Bag</p>
-          <div className={styles.btmDetails}>
-            <div className={styles.review}>
-              <AiFillStar size="15px" />
-              4.9 (856)
-            </div>
-            <div>$100</div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.cardContainer}>
-        <div className={styles.imgContainer}>
-          <Image src={HeroImage} objectFit="cover" layout="fill"/>
-        </div>
-        <div className={styles.cardDetails}>
-          <p>Gucci Louis Vou Bag</p>
-          <div className={styles.btmDetails}>
-            <div className={styles.review}>
-              <AiFillStar size="15px" />
-              4.9 (856)
-            </div>
-            <div>$100</div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.cardContainer}>
-        <div className={styles.imgContainer}>
-          <Image src={HeroImage} objectFit="cover" layout="fill"/>
-        </div>
-        <div className={styles.cardDetails}>
-          <p>Gucci Louis Vou Bag</p>
-          <div className={styles.btmDetails}>
-            <div className={styles.review}>
-              <AiFillStar size="15px" />
-              4.9 (856)
-            </div>
-            <div>$100</div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.cardContainer}>
-        <div className={styles.imgContainer}>
-          <Image src={HeroImage} objectFit="cover" layout="fill"/>
-        </div>
-        <div className={styles.cardDetails}>
-          <p>Gucci Louis Vou Bag</p>
-          <div className={styles.btmDetails}>
-            <div className={styles.review}>
-              <AiFillStar size="15px" />
-              4.9 (856)
-            </div>
-            <div>$100</div>
-          </div>
-        </div>
-      </div>
+      {allProjects?.map((project) => <div key={project.project_id.format()}>
+        <ProjectCard project={project}/> 
+      </div>)}
     </div>
   );
 };

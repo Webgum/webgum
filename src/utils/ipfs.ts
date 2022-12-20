@@ -1,7 +1,7 @@
 import { create } from 'ipfs-http-client';
 
 export async function getLinks(ipfsPath: string) {
-  const url = 'https://dweb.link/api/v0';
+  const url = 'https://ipfs.io/api/v0';
   const ipfs = create({ url });
 
   const links = [];

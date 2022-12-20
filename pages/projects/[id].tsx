@@ -9,11 +9,13 @@ import { useIsConnected } from "../../src/hooks/useIsConnected";
 import { useFuelWeb3 } from "../../src/hooks/useFuelWeb3";
 import { ConnectButton } from "../../src/components/connect-button/ConnectButton";
 import { CONTRACT_ID } from "../../src/utils/contract-id";
+import { getLinks } from "../../src/utils/ipfs";
+import Image from "next/image";
 
 export default function Project() {
   const [project, setProject] = useState<ProjectOutput>();
   const [ipfsData, setIpfsData] = useState<any>();
-  const [previewImages, setPreviewImages] = useState();
+  const [previewImages, setPreviewImages] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const isConnected = useIsConnected();
   const router = useRouter();
@@ -22,24 +24,33 @@ export default function Project() {
   const [FuelWeb3] = useFuelWeb3();
   const [accounts, setAccounts] = useState<Array<string>>([]);
 
+  async function getIPFSData(cid: string) {
+    const ipfsResp = await fetch(
+      `https://${cid}.ipfs.w3s.link/data.json`
+    );
+    const json = await ipfsResp.json();
+    setIpfsData(json);
+
+    const links = await getLinks(cid);
+    let previewLinks: any[] = [];
+    links.forEach((link) => {
+      if (link.name.startsWith("preview")) {
+        previewLinks.push(link);
+      }
+    });
+    setPreviewImages(previewLinks);
+  }
+
   async function getProjectInfo() {
     try {
       let inputID = parseInt(id as string);
       const wallet = new WalletLocked(accounts[0], FuelWeb3.getProvider());
       const contract = WebgumContractAbi__factory.connect(CONTRACT_ID!, wallet);
-      console.log("INPUT ID", inputID);
-      console.log("CONTRACT:", contract!.functions);
+      // console.log("INPUT ID", inputID);
+      // console.log("CONTRACT:", contract!.functions);
       let { value } = await contract!.functions.get_project(inputID).get();
-
       setProject(value);
-      const ipfsResp = await fetch(
-        `https://${value.metadata}.ipfs.w3s.link/data.json`
-      );
-      const json = await ipfsResp.json();
-      setIpfsData(json);
-     
-      // TODO: fetch preview images
-      
+      await getIPFSData(value.metadata);
       setLoading(false);
     } catch (error) {
       console.log("ERROR: ", error);
@@ -81,6 +92,14 @@ export default function Project() {
               <div>Price: {project.price.format()}</div>
               <div>IPFS CID: {project.metadata}</div>
               <div>Owner address: {project.owner_address.Address?.value}</div>
+              {previewImages.length > 0 && <div style={{width: "250px", height: "250px", overflow: "hidden", position: "relative"}}>
+              <Image
+              src={`https://ipfs.io/ipfs/${previewImages[0].path}`}
+              alt="project image"
+              objectFit="cover"
+              layout="fill"
+            />
+                </div>}
               {ipfsData && (
                 <div>
                   {ipfsData.name && <div>Name: {ipfsData.name}</div>}
@@ -90,12 +109,11 @@ export default function Project() {
                   {ipfsData.category && (
                     <div>Category: {ipfsData.category}</div>
                   )}
-                  {/* {ipfsData.category && <div>Category: {ipfsData.category}</div>} */}
-                  <Download cid={project.metadata} />
+                  {/* <Download cid={project.metadata} /> */}
                 </div>
               )}
 
-              <BuyButton projectID={id} />
+              <BuyButton contract={contract} projectID={id} />
             </div>
           ) : (
             <div>{loading && <div> Loading... </div>}</div>

@@ -12,7 +12,7 @@ interface IProjectCard {
 
 export default function ProjectCard({ project }: IProjectCard) {
   const [ipfsData, setIpfsData] = useState<any>();
-  const [previewImages, setPreviewImages] = useState<any[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   //   console.log("PROJECT!", project);
 
@@ -28,7 +28,10 @@ export default function ProjectCard({ project }: IProjectCard) {
       let previewLinks: any[] = [];
       links.forEach((link) => {
         if (link.name.startsWith("preview")) {
-          previewLinks.push(link);
+        console.log("LINK", link)
+        let paths = link.path.split("/");
+        let img =  `https://${paths[0]}.ipfs.w3s.link/${paths[1]}`
+        previewLinks.push(img);
         }
       });
       setPreviewImages(previewLinks);
@@ -44,7 +47,7 @@ export default function ProjectCard({ project }: IProjectCard) {
         <div className={styles.imgContainer}>
           {previewImages.length > 0 && (
             <Image
-              src={`https://ipfs.io/ipfs/${previewImages[0].path}`}
+              src={previewImages[0]}
               alt="project image"
               objectFit="cover"
               layout="fill"

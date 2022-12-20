@@ -4,7 +4,10 @@
 
 import type { Provider, BaseWalletLocked, AbstractAddress } from "fuels";
 import { Interface, Contract } from "fuels";
-import type { Abi, AbiInterface } from "../Abi";
+import type {
+  WebgumContractAbi,
+  WebgumContractAbiInterface,
+} from "../WebgumContractAbi";
 const _abi = {
   types: [
     {
@@ -15,11 +18,16 @@ const _abi = {
     },
     {
       typeId: 1,
-      type: "[_; 5]",
+      type: "(_, _)",
       components: [
         {
-          name: "__array_element",
-          type: 11,
+          name: "__tuple_element",
+          type: 5,
+          typeArguments: null,
+        },
+        {
+          name: "__tuple_element",
+          type: 12,
           typeArguments: null,
         },
       ],
@@ -27,35 +35,47 @@ const _abi = {
     },
     {
       typeId: 2,
-      type: "b256",
-      components: null,
-      typeParameters: null,
-    },
-    {
-      typeId: 3,
-      type: "bool",
-      components: null,
-      typeParameters: null,
-    },
-    {
-      typeId: 4,
-      type: "enum Identity",
+      type: "[_; 5]",
       components: [
         {
-          name: "Address",
-          type: 7,
-          typeArguments: null,
-        },
-        {
-          name: "ContractId",
-          type: 8,
+          name: "__array_element",
+          type: 12,
           typeArguments: null,
         },
       ],
       typeParameters: null,
     },
     {
+      typeId: 3,
+      type: "b256",
+      components: null,
+      typeParameters: null,
+    },
+    {
+      typeId: 4,
+      type: "bool",
+      components: null,
+      typeParameters: null,
+    },
+    {
       typeId: 5,
+      type: "enum Identity",
+      components: [
+        {
+          name: "Address",
+          type: 8,
+          typeArguments: null,
+        },
+        {
+          name: "ContractId",
+          type: 9,
+          typeArguments: null,
+        },
+      ],
+      typeParameters: null,
+    },
+    {
+      typeId: 6,
       type: "enum InvalidError",
       components: [
         {
@@ -88,34 +108,37 @@ const _abi = {
           type: 0,
           typeArguments: null,
         },
-      ],
-      typeParameters: null,
-    },
-    {
-      typeId: 6,
-      type: "str[59]",
-      components: null,
-      typeParameters: null,
-    },
-    {
-      typeId: 7,
-      type: "struct Address",
-      components: [
         {
-          name: "value",
-          type: 2,
+          name: "OnlyOwner",
+          type: 0,
+          typeArguments: null,
+        },
+        {
+          name: "OwnerNotInitialized",
+          type: 0,
+          typeArguments: null,
+        },
+        {
+          name: "OwnerAlreadyInitialized",
+          type: 0,
           typeArguments: null,
         },
       ],
       typeParameters: null,
     },
     {
+      typeId: 7,
+      type: "str[59]",
+      components: null,
+      typeParameters: null,
+    },
+    {
       typeId: 8,
-      type: "struct ContractId",
+      type: "struct Address",
       components: [
         {
           name: "value",
-          type: 2,
+          type: 3,
           typeArguments: null,
         },
       ],
@@ -123,36 +146,11 @@ const _abi = {
     },
     {
       typeId: 9,
-      type: "struct Project",
+      type: "struct ContractId",
       components: [
         {
-          name: "project_id",
-          type: 11,
-          typeArguments: null,
-        },
-        {
-          name: "price",
-          type: 11,
-          typeArguments: null,
-        },
-        {
-          name: "max_buyers",
-          type: 11,
-          typeArguments: null,
-        },
-        {
-          name: "buyer_count",
-          type: 11,
-          typeArguments: null,
-        },
-        {
-          name: "owner_address",
-          type: 4,
-          typeArguments: null,
-        },
-        {
-          name: "metadata",
-          type: 6,
+          name: "value",
+          type: 3,
           typeArguments: null,
         },
       ],
@@ -160,16 +158,36 @@ const _abi = {
     },
     {
       typeId: 10,
-      type: "struct Vector",
+      type: "struct Project",
       components: [
         {
-          name: "inner",
-          type: 1,
+          name: "project_id",
+          type: 12,
           typeArguments: null,
         },
         {
-          name: "current_ix",
-          type: 11,
+          name: "price",
+          type: 12,
+          typeArguments: null,
+        },
+        {
+          name: "max_buyers",
+          type: 12,
+          typeArguments: null,
+        },
+        {
+          name: "buyer_count",
+          type: 12,
+          typeArguments: null,
+        },
+        {
+          name: "owner_address",
+          type: 5,
+          typeArguments: null,
+        },
+        {
+          name: "metadata",
+          type: 7,
           typeArguments: null,
         },
       ],
@@ -177,6 +195,23 @@ const _abi = {
     },
     {
       typeId: 11,
+      type: "struct Vector",
+      components: [
+        {
+          name: "inner",
+          type: 2,
+          typeArguments: null,
+        },
+        {
+          name: "current_ix",
+          type: 12,
+          typeArguments: null,
+        },
+      ],
+      typeParameters: null,
+    },
+    {
+      typeId: 12,
       type: "u64",
       components: null,
       typeParameters: null,
@@ -187,7 +222,7 @@ const _abi = {
       inputs: [
         {
           name: "project_id",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
       ],
@@ -202,19 +237,19 @@ const _abi = {
       inputs: [
         {
           name: "buyer",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
         {
           name: "index",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
       ],
       name: "get_bought_project",
       output: {
         name: "",
-        type: 9,
+        type: 10,
         typeArguments: null,
       },
     },
@@ -222,14 +257,14 @@ const _abi = {
       inputs: [
         {
           name: "buyer",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
       ],
       name: "get_buyer_list_length",
       output: {
         name: "",
-        type: 11,
+        type: 12,
         typeArguments: null,
       },
     },
@@ -237,13 +272,33 @@ const _abi = {
       inputs: [
         {
           name: "id",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
       ],
       name: "get_buyer_vector",
       output: {
         name: "",
+        type: 11,
+        typeArguments: null,
+      },
+    },
+    {
+      inputs: [
+        {
+          name: "creator",
+          type: 5,
+          typeArguments: null,
+        },
+        {
+          name: "index",
+          type: 12,
+          typeArguments: null,
+        },
+      ],
+      name: "get_created_project",
+      output: {
+        name: "",
         type: 10,
         typeArguments: null,
       },
@@ -252,39 +307,19 @@ const _abi = {
       inputs: [
         {
           name: "creator",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
         {
           name: "index",
-          type: 11,
-          typeArguments: null,
-        },
-      ],
-      name: "get_created_project",
-      output: {
-        name: "",
-        type: 9,
-        typeArguments: null,
-      },
-    },
-    {
-      inputs: [
-        {
-          name: "creator",
-          type: 4,
-          typeArguments: null,
-        },
-        {
-          name: "index",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
       ],
       name: "get_created_project_id",
       output: {
         name: "",
-        type: 11,
+        type: 12,
         typeArguments: null,
       },
     },
@@ -292,14 +327,14 @@ const _abi = {
       inputs: [
         {
           name: "creator",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
       ],
       name: "get_creator_list_length",
       output: {
         name: "",
-        type: 11,
+        type: 12,
         typeArguments: null,
       },
     },
@@ -307,35 +342,11 @@ const _abi = {
       inputs: [
         {
           name: "id",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
       ],
       name: "get_creator_vector",
-      output: {
-        name: "",
-        type: 10,
-        typeArguments: null,
-      },
-    },
-    {
-      inputs: [
-        {
-          name: "project_id",
-          type: 11,
-          typeArguments: null,
-        },
-      ],
-      name: "get_project",
-      output: {
-        name: "",
-        type: 9,
-        typeArguments: null,
-      },
-    },
-    {
-      inputs: [],
-      name: "get_project_index",
       output: {
         name: "",
         type: 11,
@@ -346,14 +357,44 @@ const _abi = {
       inputs: [
         {
           name: "project_id",
-          type: 11,
+          type: 12,
+          typeArguments: null,
+        },
+      ],
+      name: "get_project",
+      output: {
+        name: "",
+        type: 10,
+        typeArguments: null,
+      },
+    },
+    {
+      inputs: [
+        {
+          name: "index",
+          type: 12,
+          typeArguments: null,
+        },
+      ],
+      name: "get_project_rating",
+      output: {
+        name: "",
+        type: 1,
+        typeArguments: null,
+      },
+    },
+    {
+      inputs: [
+        {
+          name: "project_id",
+          type: 12,
           typeArguments: null,
         },
       ],
       name: "get_project_ratings_ix",
       output: {
         name: "",
-        type: 10,
+        type: 11,
         typeArguments: null,
       },
     },
@@ -362,7 +403,7 @@ const _abi = {
       name: "get_projects_list_length",
       output: {
         name: "",
-        type: 11,
+        type: 12,
         typeArguments: null,
       },
     },
@@ -370,19 +411,28 @@ const _abi = {
       inputs: [
         {
           name: "project_id",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "wallet",
-          type: 4,
+          type: 5,
           typeArguments: null,
         },
       ],
       name: "has_bought_project",
       output: {
         name: "",
-        type: 3,
+        type: 4,
+        typeArguments: null,
+      },
+    },
+    {
+      inputs: [],
+      name: "initialize_owner",
+      output: {
+        name: "",
+        type: 5,
         typeArguments: null,
       },
     },
@@ -390,24 +440,24 @@ const _abi = {
       inputs: [
         {
           name: "price",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "max_buyers",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "metadata",
-          type: 6,
+          type: 7,
           typeArguments: null,
         },
       ],
       name: "list_project",
       output: {
         name: "",
-        type: 9,
+        type: 10,
         typeArguments: null,
       },
     },
@@ -415,19 +465,19 @@ const _abi = {
       inputs: [
         {
           name: "project_id",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "rating",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
       ],
       name: "review_project",
       output: {
         name: "",
-        type: 11,
+        type: 12,
         typeArguments: null,
       },
     },
@@ -435,29 +485,38 @@ const _abi = {
       inputs: [
         {
           name: "project_id",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "price",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "max_buyers",
-          type: 11,
+          type: 12,
           typeArguments: null,
         },
         {
           name: "metadata",
-          type: 6,
+          type: 7,
           typeArguments: null,
         },
       ],
       name: "update_project",
       output: {
         name: "",
-        type: 9,
+        type: 10,
+        typeArguments: null,
+      },
+    },
+    {
+      inputs: [],
+      name: "withdraw_funds",
+      output: {
+        name: "",
+        type: 0,
         typeArguments: null,
       },
     },
@@ -467,7 +526,7 @@ const _abi = {
       logId: 0,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -475,7 +534,7 @@ const _abi = {
       logId: 1,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -483,7 +542,7 @@ const _abi = {
       logId: 2,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -491,7 +550,7 @@ const _abi = {
       logId: 3,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -499,7 +558,7 @@ const _abi = {
       logId: 4,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -507,7 +566,7 @@ const _abi = {
       logId: 5,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
         typeArguments: [],
       },
     },
@@ -515,22 +574,58 @@ const _abi = {
       logId: 6,
       loggedType: {
         name: "",
-        type: 5,
+        type: 6,
+        typeArguments: [],
+      },
+    },
+    {
+      logId: 7,
+      loggedType: {
+        name: "",
+        type: 6,
+        typeArguments: [],
+      },
+    },
+    {
+      logId: 8,
+      loggedType: {
+        name: "",
+        type: 6,
+        typeArguments: [],
+      },
+    },
+    {
+      logId: 9,
+      loggedType: {
+        name: "",
+        type: 6,
+        typeArguments: [],
+      },
+    },
+    {
+      logId: 10,
+      loggedType: {
+        name: "",
+        type: 6,
         typeArguments: [],
       },
     },
   ],
 };
 
-export class Abi__factory {
+export class WebgumContractAbi__factory {
   static readonly abi = _abi;
-  static createInterface(): AbiInterface {
-    return new Interface(_abi) as unknown as AbiInterface;
+  static createInterface(): WebgumContractAbiInterface {
+    return new Interface(_abi) as unknown as WebgumContractAbiInterface;
   }
   static connect(
     id: string | AbstractAddress,
     walletOrProvider: BaseWalletLocked | Provider
-  ): Abi {
-    return new Contract(id, _abi, walletOrProvider) as unknown as Abi;
+  ): WebgumContractAbi {
+    return new Contract(
+      id,
+      _abi,
+      walletOrProvider
+    ) as unknown as WebgumContractAbi;
   }
 }

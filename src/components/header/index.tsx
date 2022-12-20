@@ -17,7 +17,9 @@ const Header = () => {
       <div className={styles.logo}>webgum</div>
       <div>
         <div className={styles.menus}>
-          <button className={styles.sellBtn}>Start Selling</button>
+          <div className={styles.sellBtn}>
+            <Link href="/list-project">Start Selling</Link>
+          </div>
           <Link href="/register">
             <AiOutlineUser size="35px" />
           </Link>

@@ -58,7 +58,7 @@ export type IdentityOutput = Enum<{
   ContractId: ContractIdOutput;
 }>;
 
-interface AbiInterface extends Interface {
+interface WebgumContractAbiInterface extends Interface {
   functions: {
     buy_project: FunctionFragment;
     get_bought_project: FunctionFragment;
@@ -69,13 +69,15 @@ interface AbiInterface extends Interface {
     get_creator_list_length: FunctionFragment;
     get_creator_vector: FunctionFragment;
     get_project: FunctionFragment;
-    get_project_index: FunctionFragment;
+    get_project_rating: FunctionFragment;
     get_project_ratings_ix: FunctionFragment;
     get_projects_list_length: FunctionFragment;
     has_bought_project: FunctionFragment;
+    initialize_owner: FunctionFragment;
     list_project: FunctionFragment;
     review_project: FunctionFragment;
     update_project: FunctionFragment;
+    withdraw_funds: FunctionFragment;
   };
 
   encodeFunctionData(
@@ -115,8 +117,8 @@ interface AbiInterface extends Interface {
     values: [BigNumberish]
   ): Uint8Array;
   encodeFunctionData(
-    functionFragment: "get_project_index",
-    values?: undefined
+    functionFragment: "get_project_rating",
+    values: [BigNumberish]
   ): Uint8Array;
   encodeFunctionData(
     functionFragment: "get_project_ratings_ix",
@@ -131,6 +133,10 @@ interface AbiInterface extends Interface {
     values: [BigNumberish, IdentityInput]
   ): Uint8Array;
   encodeFunctionData(
+    functionFragment: "initialize_owner",
+    values?: undefined
+  ): Uint8Array;
+  encodeFunctionData(
     functionFragment: "list_project",
     values: [BigNumberish, BigNumberish, string]
   ): Uint8Array;
@@ -141,6 +147,10 @@ interface AbiInterface extends Interface {
   encodeFunctionData(
     functionFragment: "update_project",
     values: [BigNumberish, BigNumberish, BigNumberish, string]
+  ): Uint8Array;
+  encodeFunctionData(
+    functionFragment: "withdraw_funds",
+    values?: undefined
   ): Uint8Array;
 
   decodeFunctionData(
@@ -180,7 +190,7 @@ interface AbiInterface extends Interface {
     data: BytesLike
   ): DecodedValue;
   decodeFunctionData(
-    functionFragment: "get_project_index",
+    functionFragment: "get_project_rating",
     data: BytesLike
   ): DecodedValue;
   decodeFunctionData(
@@ -196,6 +206,10 @@ interface AbiInterface extends Interface {
     data: BytesLike
   ): DecodedValue;
   decodeFunctionData(
+    functionFragment: "initialize_owner",
+    data: BytesLike
+  ): DecodedValue;
+  decodeFunctionData(
     functionFragment: "list_project",
     data: BytesLike
   ): DecodedValue;
@@ -207,10 +221,14 @@ interface AbiInterface extends Interface {
     functionFragment: "update_project",
     data: BytesLike
   ): DecodedValue;
+  decodeFunctionData(
+    functionFragment: "withdraw_funds",
+    data: BytesLike
+  ): DecodedValue;
 }
 
-export class Abi extends Contract {
-  interface: AbiInterface;
+export class WebgumContractAbi extends Contract {
+  interface: WebgumContractAbiInterface;
   functions: {
     buy_project: InvokeFunction<[project_id: BigNumberish], void>;
 
@@ -239,7 +257,10 @@ export class Abi extends Contract {
 
     get_project: InvokeFunction<[project_id: BigNumberish], ProjectOutput>;
 
-    get_project_index: InvokeFunction<[], BN>;
+    get_project_rating: InvokeFunction<
+      [index: BigNumberish],
+      [IdentityOutput, BN]
+    >;
 
     get_project_ratings_ix: InvokeFunction<
       [project_id: BigNumberish],
@@ -252,6 +273,8 @@ export class Abi extends Contract {
       [project_id: BigNumberish, wallet: IdentityInput],
       boolean
     >;
+
+    initialize_owner: InvokeFunction<[], IdentityOutput>;
 
     list_project: InvokeFunction<
       [price: BigNumberish, max_buyers: BigNumberish, metadata: string],
@@ -272,5 +295,7 @@ export class Abi extends Contract {
       ],
       ProjectOutput
     >;
+
+    withdraw_funds: InvokeFunction<[], void>;
   };
 }

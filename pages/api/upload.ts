@@ -26,6 +26,7 @@ handler.post<ExtendedRequest>(async (req, res) => {
   try {
     const files = await makeFileObjects(req.body, req.files);
     const cid = await storeFiles(files);
+    // const cid = "123"
 
     // return res.status(200).json({ success: true, cid: "123" });
     return res.status(200).json({ success: true, cid: cid });
@@ -57,7 +58,12 @@ async function storeFiles(files: FileObject[]) {
 async function getNewPath(item: any) {
   if (item[0].originalFilename && item[0].originalFilename !== "") {
     const filePath = resolve(process.cwd(), item[0].path);
-    const newPath = join(dirname(filePath), item[0].originalFilename);
+    let newPath;
+    if(item[0].fieldName.startsWith("preview")){
+      newPath = join(dirname(filePath), "preview-" + item[0].originalFilename);
+    } else {
+      newPath = join(dirname(filePath), item[0].originalFilename);
+    }
     await fs.promises.rename(filePath, newPath);
     return newPath;
   }

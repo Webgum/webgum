@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 3rem;
+    font-family: 'Poppins', sans-serif;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+
+    .cardContainer {
+        background: #945bdd;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        width: 21.3%;
+
+        @media screen and (max-width: 1200px) {
+            width: 35%;
+        }
+
+        @media screen and (max-width: 1000px) {
+            width: 28%;
+        }
+
+        @media screen and (max-width: 700px) {
+            width: 45%;
+        }
+
+        @media screen and (max-width: 600px) {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        @media screen and (max-width: 400px) {
+            width: 100%;
+
+        }
+
+    }
+
+    .imgContainer {
+        height: 250px;
+        width: 100%;
+        position: relative;
+        border-bottom: 2px solid white;
+        margin-bottom: .5rem;
+    }
+
+
+    .cardDetails {
+        color: white;
+
+        p {
+            text-align: center;
+            font-weight: 500;
+            padding-bottom: .5rem;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+
+    .btmDetails {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 2px solid white;
+        padding: 0 .5rem;
+    }
+
+    .review {
+        display: flex;
+        align-items: center;
+        gap: .2rem;
+        border-right: 2px solid white;
+        padding: .5rem;
+        padding-right: 4rem;
+        font-size: 12px;
+
+        @media screen and (max-width: 1000px) {
+            padding-right: 1rem;
+        }
+
+        @media screen and (max-width: 600px) {
+            padding-right: 6rem;
+        }
+    }
+}

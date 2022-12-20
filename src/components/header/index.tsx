@@ -8,22 +8,22 @@ import {
 import Link from "next/link";
 import MobileMenu from "../mobilemenu";
 
-
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  console.log(isOpen)
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
   return (
     <div className={styles.container}>
       <div className={styles.logo}>webgum</div>
       <div>
         <div className={styles.menus}>
-          <div className={styles.sellBtn}>
-            <Link href="/list-project">Start Selling</Link>
-          </div>
-          <Link href="/register">
+          <Link href="/user">
+            <button className={styles.sellBtn}>Start Selling</button>
+          </Link>
+
+          {/* <Link href="/register">
             <AiOutlineUser size="35px" />
           </Link>
-          <AiOutlineShoppingCart size="35px" />
+          <AiOutlineShoppingCart size="35px" /> */}
           <AiOutlineSearch size="35px" />
         </div>
 
@@ -43,7 +43,7 @@ const Header = () => {
             </div>
           </label>
         </div>
-       { isOpen && <MobileMenu />}
+        {isOpen && <MobileMenu />}
       </div>
     </div>
   );

@@ -11,12 +11,11 @@ export function ConnectButton() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h1>Hello!!</h1>
+      <p>Connect your Fuel Wallet to start selling.</p>
       {FuelWeb3 && isMounted && (
-        <button
-          className={styles.connect_button}
-          onClick={() => FuelWeb3.connect()}
-        >
+        <button className={styles.walletbtn} onClick={() => FuelWeb3.connect()}>
           Connect Wallet
         </button>
       )}

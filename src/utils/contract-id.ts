@@ -1,0 +1,1 @@
+export const CONTRACT_ID = "0xf69e7427b146bab211814f46c0ac86e73d6bc8bf936a7dd7290b0a0bd7840d83"

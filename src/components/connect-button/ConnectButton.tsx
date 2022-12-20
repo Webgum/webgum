@@ -20,7 +20,18 @@ export function ConnectButton() {
         </button>
       )}
       {!FuelWeb3 && isMounted && (
-        <div> Download the Fuel Wallet to use the app.</div>
+        <div>
+          {" "}
+          Download the{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://fuels-wallet.vercel.app/"
+          >
+            Fuel Wallet
+          </a>{" "}
+          to use the app.
+        </div>
       )}
     </div>
   );

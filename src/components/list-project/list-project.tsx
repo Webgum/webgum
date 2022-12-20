@@ -1,25 +1,25 @@
-import React, { useEffect, useState, useMemo } from "react";
-import styles from "./list-project.module.scss";
+import { useEffect, useState, useMemo } from "react";
 import { useFuelWeb3 } from "../../hooks/useFuelWeb3";
 import { useIsConnected } from "../../hooks/useIsConnected";
-import { ConnectButton } from "../connect-button/ConnectButton";
-import { FiUpload } from "react-icons/fi";
+import { ConnectButton } from "../../components/connect-button/ConnectButton";
 import { WalletLocked, bn, BN } from "fuels";
-import { Abi__factory } from "../../contracts";
+import { WebgumContractAbi__factory } from "../../contracts";
+import { CONTRACT_ID } from "../../utils/contract-id";
+import styles from "./list-project.module.scss";
+import { categories } from "../../utils/categories";
 
-// The address of the contract deployed the Fuel testnet
-const CONTRACT_ID =
-  "0x53c0c766088af9bd9b0cec7499c9375fbb9896336f0873ea361208bc1e44418d";
 
 export default function ListProject() {
   const [projectName, setProjectName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [files, setFiles] = useState<FileList | null>(null);
+  const [previewPhotos, setPreviewPhotos] = useState<FileList | null>(null);
   const [price, setPrice] = useState("0");
   const [maxBuyers, setMaxBuyers] = useState("0");
   const isConnected = useIsConnected();
   const [FuelWeb3] = useFuelWeb3();
   const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState<string>("");
   const [accounts, setAccounts] = useState<Array<string>>([]);
   const [projectID, setProjectID] = useState<BN>();
 
@@ -36,7 +36,7 @@ export default function ListProject() {
       const wallet = new WalletLocked(accounts[0], FuelWeb3.getProvider());
       // Connects out Contract instance to the deployed contract
       // address using the given wallet.
-      const contract = Abi__factory.connect(CONTRACT_ID, wallet);
+      const contract = WebgumContractAbi__factory.connect(CONTRACT_ID!, wallet);
 
       return [contract, wallet];
     }
@@ -44,9 +44,7 @@ export default function ListProject() {
   }, [FuelWeb3, accounts]);
 
   async function listProject(cid: string) {
-    // console.log("listing project");
     try {
-      // console.log("listing a new project..");
       const priceInput = bn.parseUnits(price.toString());
       const { value } = await contract!.functions
         .list_project(priceInput, maxBuyers, cid)
@@ -64,28 +62,50 @@ export default function ListProject() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    if (files == null) {
-      alert("You are missing files");
-    } else {
-      let filesArray = [];
-      for (let i = 0; i < files.length; i++) {
-        filesArray.push(files[i]);
+    if (wallet) {
+      setLoading(true);
+      try {
+        let balance = await wallet.getBalance();
+        if (!balance.gt(0)) {
+          alert(
+            "You need to get test funds from the Fuel faucet: https://faucet-beta-2.fuel.network/"
+          );
+          return;
+        }
+        if (files == null || previewPhotos == null) {
+          alert("You are missing files");
+        } else {
+          let filesArray = [];
+          let previewsArray = [];
+          for (let i = 0; i < files.length; i++) {
+            filesArray.push(files[i]);
+          }
+          for (let i = 0; i < previewPhotos.length; i++) {
+            previewsArray.push(previewPhotos[i]);
+          }
+          let cid = await uploadFiles(filesArray, previewsArray);
+          console.log("uploaded, going to list", cid);
+          // call the contract with this
+          await listProject(cid);
+        }
+      } catch (error) {
+        setLoading(false);
+        alert(`ERROR: ${error}`);
       }
-      let cid = await uploadFiles(filesArray);
-      // console.log("uploaded, going to list");
-      // call the contract with this
-      await listProject(cid);
     }
   };
 
-  async function uploadFiles(filesArray: File[]) {
+  async function uploadFiles(filesArray: File[], previews: File[]) {
     let formData = new FormData();
     filesArray.forEach((file, index) => {
       formData.append(`file${index}`, file);
     });
+    previews.forEach((file, index) => {
+      formData.append(`preview${index}`, file);
+    });
     formData.append("name", projectName);
     formData.append("description", description);
+    formData.append("category", category);
     let cid = await uploadToIPFS(formData);
     return cid;
   }
@@ -99,9 +119,7 @@ export default function ListProject() {
       if (response.status !== 200) {
         console.log("ERROR", response);
       } else {
-        // console.log("Form successfully submitted!");
         let responseJSON = await response.json();
-        // console.log("CID:", responseJSON.cid);
         return responseJSON.cid;
       }
     } catch (error) {
@@ -115,14 +133,14 @@ export default function ListProject() {
     <div>
       {!projectID ? (
         <section>
-          <>
-            {loading ? (
-              <div>Loading...</div>
-            ) : (
-              <div className={styles.container}>
-                <h1>List Your Project</h1>
-                <form onSubmit={handleSubmit} className={styles.formContainer}>
-                  <div>
+          {isConnected ? (
+            <div className={styles.container}>
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                <form className={styles.formContainer} onSubmit={handleSubmit}>
+                  <h1>List a new project</h1>
+                  <div className={styles.inputContainer}>
                     <label htmlFor="files-name">Project Name</label>
                     <div>
                       <input
@@ -131,13 +149,12 @@ export default function ListProject() {
                         type="text"
                         required
                         value={projectName}
-                        placeholder="Name of Project"
                         onChange={(e) => setProjectName(e.target.value)}
                       />
                     </div>
                   </div>
 
-                  <div>
+                  <div className={styles.inputContainer}>
                     <label htmlFor="files-description">
                       Project Description
                     </label>
@@ -148,16 +165,47 @@ export default function ListProject() {
                         type="text"
                         required
                         value={description}
-                        placeholder="Description"
                         onChange={(e) => setDescription(e.target.value)}
                       />
                     </div>
                   </div>
 
-                  <div className={styles.fileInput}>
-                    <label htmlFor="files">
-                      Upload Project Files
-                      <FiUpload size="20px"/>
+                  <div className={styles.inputContainer}>
+                    <label htmlFor="category">
+                      Project Category
+                    </label>
+                    <div>
+                    <select name="categories" id="categories" onChange={(e) => setCategory(e.target.value)}>
+                      <option value="">(none)</option>
+                      <option value={categories[0].title}>{categories[0].title}</option>
+                      <option value={categories[1].title}>{categories[1].title}</option>
+                      <option value={categories[2].title}>{categories[2].title}</option>
+                      <option value={categories[3].title}>{categories[3].title}</option>
+                    </select>
+                    </div>
+                  </div>
+
+                  <div className={styles.inputContainer}>
+                    <label htmlFor="preview-photos">Preview Photos</label>
+                    <div>
+                      <input
+                        type="file"
+                        id="preview-photos"
+                        multiple
+                        required
+                        accept="image/*"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files.length > 0) {
+                            setPreviewPhotos(e.target.files);
+                          }
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.inputContainer}>
+                    <label htmlFor="files">Project Files</label>
+                    <div>
                       <input
                         type="file"
                         id="files"
@@ -169,43 +217,42 @@ export default function ListProject() {
                           }
                         }}
                       />
-                    </label>
-                  </div>
-                  <div className={styles.flexDiv}>
-                    <div>
-                      <label htmlFor="price">Price</label>
-                      <div>
-                        <input
-                          type="number"
-                          id="price"
-                          required
-                          min="0"
-                          step="any"
-                          inputMode="decimal"
-                          placeholder="0.00"
-                          onChange={(e) => {
-                            setPrice(e.target.value);
-                          }}
-                        />
-                      </div>
                     </div>
+                  </div>
 
+                  <div className={styles.inputContainer}>
+                    <label htmlFor="price">Price</label>
                     <div>
-                      <label htmlFor="max-buyers">
-                        Max Buyers (set to 0 if unliited)
-                      </label>
-                      <div>
-                        <input
-                          type="number"
-                          id="max-buyers"
-                          required
-                          min="0"
-                          step="1"
-                          onChange={(e) => {
-                            setMaxBuyers(e.target.value);
-                          }}
-                        />
-                      </div>
+                      <input
+                        type="number"
+                        id="price"
+                        required
+                        min="0"
+                        step="any"
+                        inputMode="decimal"
+                        placeholder="0.00"
+                        onChange={(e) => {
+                          setPrice(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.inputContainer}>
+                    <label htmlFor="max-buyers">
+                      Max Buyers (set to 0 if unlimited)
+                    </label>
+                    <div>
+                      <input
+                        type="number"
+                        id="max-buyers"
+                        required
+                        min="0"
+                        step="1"
+                        onChange={(e) => {
+                          setMaxBuyers(e.target.value);
+                        }}
+                      />
                     </div>
                   </div>
 
@@ -213,9 +260,11 @@ export default function ListProject() {
                     <button type="submit">List Project</button>
                   </div>
                 </form>
-              </div>
-            )}
-          </>
+              )}
+            </div>
+          ) : (
+            <ConnectButton />
+          )}
         </section>
       ) : (
         <div>Your item is listed! The project id is {projectID.format()}</div>

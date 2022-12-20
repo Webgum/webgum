@@ -3,7 +3,8 @@ import { FuelWeb3SDK } from '@fuel-wallet/sdk';
 import { Provider } from 'fuels';
 
 export type FuelWeb3 = FuelWeb3SDK & {
-  getProvider: () => Provider
+  getProvider: () => Provider,
+  getWallet: () => {provider: Provider, _address: String | undefined}
 };
 
 const globalWindow: Window & {

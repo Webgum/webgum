@@ -13,9 +13,6 @@ export function useIsConnected() {
             //if length is 0 it means you're not connected
             setConnect(accounts.length > 0);
         }
-        if (FuelWeb3) {
-            connect();
-        }
         FuelWeb3?.on('connection', connect);
         return () => {
             FuelWeb3?.off('connection', connect)

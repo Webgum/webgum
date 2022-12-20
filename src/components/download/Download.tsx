@@ -1,4 +1,3 @@
-import { create } from "ipfs-http-client";
 import { useState, useEffect } from "react";
 
 interface DownloadProps {
@@ -15,23 +14,14 @@ export default function Download({ cid }: DownloadProps) {
 
   useEffect(() => {
     async function runGetLinks() {
-      const myLinks = await getLinks(cid);
-      setLinks(myLinks);
+      // const myLinks = await getLinks(cid);
+      // setLinks(myLinks);
+      // TODO: get links
     }
     if (cid) {
       runGetLinks();
     }
   }, [cid]);
-
-  async function getLinks(ipfsPath: string) {
-    const url = "https://dweb.link/api/v0";
-    const ipfs = create({ url });
-    const links = [];
-    for await (const link of ipfs.ls(ipfsPath)) {
-      links.push(link);
-    }
-    return links;
-  }
 
   const prepareDownload = async () => {
     setLoading(true);
@@ -39,7 +29,7 @@ export default function Download({ cid }: DownloadProps) {
       let raw = [];
       if (links) {
         for await (const link of links) {
-          if (link.name !== "data.json") {
+          if (link.name !== "data.json" && !link.name.startsWith("preview")) {
             let res = await fetch(`https://ipfs.io/ipfs/${link.path}`);
             let blob = await res.blob();
             const file = {

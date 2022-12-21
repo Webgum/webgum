@@ -106,7 +106,7 @@ const UserProfile = () => {
             </div>
             {tab === 1 && <AllProducts contract={contract} creatorVector={creatorVector} />}
             {tab === 2 && <ItemsOnSale />}
-            {tab === 3 && <BuyHistory buyerVector={buyerVector} />}
+            {tab === 3 && <BuyHistory contract={contract} buyerVector={buyerVector} />}
           </main>
         </div>
       ) : (

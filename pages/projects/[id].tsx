@@ -25,9 +25,7 @@ export default function Project() {
   const [accounts, setAccounts] = useState<Array<string>>([]);
 
   async function getIPFSData(cid: string) {
-    const ipfsResp = await fetch(
-      `https://${cid}.ipfs.w3s.link/data.json`
-    );
+    const ipfsResp = await fetch(`https://${cid}.ipfs.w3s.link/data.json`);
     const json = await ipfsResp.json();
     setIpfsData(json);
 
@@ -87,19 +85,36 @@ export default function Project() {
         <div>
           {project ? (
             <div>
-              <div>Buyer Count: {project.buyer_count.format()}</div>
-              <div>Max Buyers: {project.max_buyers.format()}</div>
-              <div>Price: {project.price.format()}</div>
+              <div>
+                Buyer Count:{" "}
+                {parseFloat(project.buyer_count.format()) * 1_000_000_000}
+              </div>
+              <div>
+                Max Buyers:{" "}
+                {parseFloat(project.max_buyers.format()) * 1_000_000_000 == 0
+                  ? "Unlimited"
+                  : parseFloat(project.max_buyers.format()) * 1_000_000_000}
+              </div>
+              <div>Price: {project.price.formatUnits()}</div>
               <div>IPFS CID: {project.metadata}</div>
               <div>Owner address: {project.owner_address.Address?.value}</div>
-              {previewImages.length > 0 && <div style={{width: "250px", height: "250px", overflow: "hidden", position: "relative"}}>
-              <Image
-              src={`https://ipfs.io/ipfs/${previewImages[0].path}`}
-              alt="project image"
-              objectFit="cover"
-              layout="fill"
-            />
-                </div>}
+              {previewImages.length > 0 && (
+                <div
+                  style={{
+                    width: "250px",
+                    height: "250px",
+                    overflow: "hidden",
+                    position: "relative",
+                  }}
+                >
+                  <Image
+                    src={`https://ipfs.io/ipfs/${previewImages[0].path}`}
+                    alt="project image"
+                    objectFit="cover"
+                    layout="fill"
+                  />
+                </div>
+              )}
               {ipfsData && (
                 <div>
                   {ipfsData.name && <div>Name: {ipfsData.name}</div>}

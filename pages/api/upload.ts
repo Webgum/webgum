@@ -89,6 +89,6 @@ async function makeFileObjects(text: string, myFiles: File[]) {
 
 function makeStorageClient() {
   return new Web3Storage({
-    token: process.env.WEB3STORAGE_TOKEN ? process.env.WEB3STORAGE_TOKEN : "",
+    token: process.env.WEB3STORAGE_TOKEN!,
   });
 }

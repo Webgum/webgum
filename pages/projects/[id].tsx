@@ -15,7 +15,7 @@ import Image from "next/image";
 export default function Project() {
   const [project, setProject] = useState<ProjectOutput>();
   const [ipfsData, setIpfsData] = useState<any>();
-  const [previewImages, setPreviewImages] = useState<any[]>([]);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const isConnected = useIsConnected();
   const router = useRouter();
@@ -33,7 +33,9 @@ export default function Project() {
     let previewLinks: any[] = [];
     links.forEach((link) => {
       if (link.name.startsWith("preview")) {
-        previewLinks.push(link);
+        let paths = link.path.split("/");
+        // console.log("PATHS", paths)
+        previewLinks.push(`https://${paths[0]}.ipfs.w3s.link/${paths[1]}`);
       }
     });
     setPreviewImages(previewLinks);
@@ -108,7 +110,7 @@ export default function Project() {
                   }}
                 >
                   <Image
-                    src={`https://ipfs.io/ipfs/${previewImages[0].path}`}
+                    src={previewImages[0]}
                     alt="project image"
                     objectFit="cover"
                     layout="fill"

@@ -89,7 +89,11 @@ export default function ListProject() {
           let cid = await uploadFiles(filesArray, previewsArray);
           console.log("uploaded, going to list", cid);
           // call the contract with this
-          await listProject(cid);
+          if(cid){
+            await listProject(cid);
+          } else {
+            throw "missing CID"
+          }
         }
       } catch (error) {
         setLoading(false);

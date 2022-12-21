@@ -62,7 +62,9 @@ export default function ListProject() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("submitting...")
     if (wallet) {
+      console.log("loading...")
       setLoading(true);
       try {
         let balance = await wallet.getBalance();
@@ -70,6 +72,7 @@ export default function ListProject() {
           alert(
             "You need to get test funds from the Fuel faucet: https://faucet-beta-2.fuel.network/"
           );
+          setLoading(false)
           return;
         }
         if (files == null || previewPhotos == null) {
@@ -126,6 +129,7 @@ export default function ListProject() {
       alert(
         `Oops! Something went wrong. Please refresh and try again. Error ${error}`
       );
+      setLoading(false)
     }
   }
 

@@ -123,6 +123,7 @@ export default function ListProject() {
         console.log("ERROR", response);
       } else {
         let responseJSON = await response.json();
+        console.log("RESPONSE:", responseJSON)
         return responseJSON.cid;
       }
     } catch (error) {

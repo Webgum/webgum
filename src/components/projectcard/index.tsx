@@ -19,26 +19,26 @@ export default function ProjectCard({ project }: IProjectCard) {
 
   useEffect(() => {
     async function getIPFSData() {
-      const ipfsResp = await fetch(
-        `https://${project.metadata}.ipfs.w3s.link/data.json`
-      );
-      const json = await ipfsResp.json();
-      setIpfsData(json);
-
-      const links = await getLinks(project.metadata);
-      let previewLinks: any[] = [];
-      links.forEach((link) => {
-        if (link.name.startsWith("preview")) {
-          let paths = link.path.split("/");
-          // console.log("PATHS", paths)
-          previewLinks.push(`https://${paths[0]}.ipfs.w3s.link/${paths[1]}`);
-        }
-      });
-      setPreviewImages(previewLinks);
+      if (project && project.metadata && project.metadata.startsWith("b")) {
+        console.log("METADATA:", project.metadata)
+        console.log("PROJECT:", project)
+        const ipfsResp = await fetch(`https://${project.metadata}.ipfs.w3s.link/data.json`);
+        const json = await ipfsResp.json();
+        setIpfsData(json);
+        
+        const links = await getLinks(project.metadata);
+        let previewLinks: any[] = [];
+        links.forEach((link) => {
+          if (link.name.startsWith("preview")) {
+            let paths = link.path.split("/");
+            // console.log("PATHS", paths)
+            previewLinks.push(`https://${paths[0]}.ipfs.w3s.link/${paths[1]}`);
+          }
+        });
+        setPreviewImages(previewLinks);
+      }
     }
-    if (project) {
       getIPFSData();
-    }
   }, [project]);
 
   return (
@@ -68,6 +68,9 @@ export default function ProjectCard({ project }: IProjectCard) {
             </div>
               {ipfsData && <div>{project.price.format()} ETH</div>}
             </div>
+          </div>
+          <div className={styles.cardDetails}>
+            {ipfsData && ipfsData.category && <div>Category: {ipfsData.category}</div>}
           </div>
         </div>
       </Link>

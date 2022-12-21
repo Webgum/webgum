@@ -8,6 +8,5 @@ export async function getLinks(ipfsPath: string) {
   for await (const link of ipfs.ls(ipfsPath)) {
     links.push(link);
   }
-  console.log("LINKS", links);
   return links;
 }

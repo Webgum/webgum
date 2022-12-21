@@ -47,12 +47,8 @@ export default handler;
 
 async function storeFiles(files: FileObject[]) {
   const client = makeStorageClient();
-  try {
-    const cid = await client.put(files);
-    return cid;
-  } catch (error) {
-    console.log("ERROR", error);
-  }
+  const cid = await client.put(files);
+  return cid;
 }
 
 async function getNewPath(item: any) {

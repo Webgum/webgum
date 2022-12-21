@@ -89,7 +89,11 @@ export default function ListProject() {
           let cid = await uploadFiles(filesArray, previewsArray);
           console.log("uploaded, going to list", cid);
           // call the contract with this
-          await listProject(cid);
+          if(cid){
+            await listProject(cid);
+          } else {
+            throw "missing CID"
+          }
         }
       } catch (error) {
         setLoading(false);
@@ -119,10 +123,12 @@ export default function ListProject() {
         method: "POST",
         body: formData,
       });
+      let responseJSON = await response.json();
       if (response.status !== 200) {
-        console.log("ERROR", response);
+        console.log("ERROR", responseJSON);
+        throw "Upload Error"
       } else {
-        let responseJSON = await response.json();
+        console.log("RESPONSE OK:", responseJSON)
         return responseJSON.cid;
       }
     } catch (error) {

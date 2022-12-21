@@ -47,19 +47,15 @@ export default handler;
 
 async function storeFiles(files: FileObject[]) {
   const client = makeStorageClient();
-  try {
-    const cid = await client.put(files);
-    return cid;
-  } catch (error) {
-    console.log("ERROR", error);
-  }
+  const cid = await client.put(files);
+  return cid;
 }
 
 async function getNewPath(item: any) {
   if (item[0].originalFilename && item[0].originalFilename !== "") {
     const filePath = resolve(process.cwd(), item[0].path);
     let newPath;
-    if(item[0].fieldName.startsWith("preview")){
+    if (item[0].fieldName.startsWith("preview")) {
       newPath = join(dirname(filePath), "preview-" + item[0].originalFilename);
     } else {
       newPath = join(dirname(filePath), item[0].originalFilename);
@@ -88,7 +84,11 @@ async function makeFileObjects(text: string, myFiles: File[]) {
 }
 
 function makeStorageClient() {
-  return new Web3Storage({
-    token: process.env.WEB3STORAGE_TOKEN ? process.env.WEB3STORAGE_TOKEN : "",
-  });
+  if (process.env.WEB3STORAGE_TOKEN == undefined) {
+    throw "web3.storage token is missing";
+  } else {
+    return new Web3Storage({
+      token: process.env.WEB3STORAGE_TOKEN,
+    });
+  }
 }

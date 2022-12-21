@@ -267,7 +267,7 @@ export default function ListProject() {
           )}
         </section>
       ) : (
-        <div>Your item is listed! The project id is {projectID.format()}</div>
+        <div>Your item is listed! The project id is {parseFloat(projectID.format()) * 1_000_000_000}</div>
       )}
     </div>
   );

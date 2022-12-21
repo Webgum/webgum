@@ -33,6 +33,7 @@ const AllProducts = ({ creatorVector, contract }: IAllProducts) => {
 
   return (
     <div className={styles.container}>
+      <p>You have listed {totalProjects} {totalProjects == 1 ? "project" : "projects"}</p>
       {allProjects?.map((project) => <div key={project.project_id.format()}>
         <ProjectCard project={project}/> 
       </div>)}

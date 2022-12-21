@@ -62,10 +62,10 @@ export default function ProjectCard({ project }: IProjectCard) {
               <p>{ipfsData.name ? ipfsData.name : "(name not found)"}</p>
             )}
             <div className={styles.btmDetails}>
-              {/* <div className={styles.review}>
+              <div className={styles.review}>
               <AiFillStar size="15px" />
               4.9 (856)
-            </div> */}
+            </div>
               {ipfsData && <div>{project.price.format()} ETH</div>}
             </div>
           </div>

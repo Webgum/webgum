@@ -69,6 +69,9 @@ export default function ProjectCard({ project }: IProjectCard) {
               {ipfsData && <div>{project.price.format()} ETH</div>}
             </div>
           </div>
+          <div className={styles.cardDetails}>
+            {ipfsData && ipfsData.category && <div>Category: {ipfsData.category}</div>}
+          </div>
         </div>
       </Link>
     </div>

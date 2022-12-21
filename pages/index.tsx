@@ -4,7 +4,6 @@ import Header from '../src/components/header';
 import HeroSection from '../src/components/herosection';
 import styles from '../styles/Home.module.css';
 import Categories from '../src/components/categories';
-import LatestProjects from '../src/components/latestprojects';
 import Link from 'next/link';
 import SearchBar from '../src/components/searchbar';
 import HowItWorks from '../src/components/how-it-works/HowItWorks';

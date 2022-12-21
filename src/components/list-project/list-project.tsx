@@ -119,11 +119,12 @@ export default function ListProject() {
         method: "POST",
         body: formData,
       });
+      let responseJSON = await response.json();
       if (response.status !== 200) {
-        console.log("ERROR", response);
+        console.log("ERROR", responseJSON);
+        throw "Upload Error"
       } else {
-        let responseJSON = await response.json();
-        console.log("RESPONSE:", responseJSON)
+        console.log("RESPONSE OK:", responseJSON)
         return responseJSON.cid;
       }
     } catch (error) {
